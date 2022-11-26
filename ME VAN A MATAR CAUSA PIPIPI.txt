@@ -1,0 +1,5 @@
+git clone link
+git add -all
+git comit -m "[name] descrip"
+git push -u origin main
+git pull 
