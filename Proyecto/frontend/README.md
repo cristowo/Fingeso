@@ -1,4 +1,4 @@
-# Frontend
+# SJA_frontend
 
 ## Build Setup
 
