@@ -9,7 +9,7 @@
                         v-for="n in 5"
                         :key="n"
                     >
-                        <v-col style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-left: 10px;">
+                        <v-col style="margin-bottom:3%; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-left: 10px;">
                             <v-card shaped style="margin-left:1%;">
                                 <v-card-title>Compromiso</v-card-title>
                                 <v-card-subtitle>Fecha de inicio - Fecha de termino</v-card-subtitle>
@@ -28,6 +28,7 @@
                     </v-row>  
                 </v-container>
             </div>
+            <Footer></Footer>
         </div>
     </v-app>
 </template>

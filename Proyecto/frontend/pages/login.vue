@@ -27,6 +27,7 @@
                     </v-col>
                 </v-row>
             </v-container>
+            <Footer></Footer>
         </v-app>
     </div>
 </template>

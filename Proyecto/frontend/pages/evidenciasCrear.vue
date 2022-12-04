@@ -53,10 +53,8 @@
                     </v-card-text>
                 </v-card>
             </v-container>
-
-
-
         </div>
+        <Footer></Footer>
     </v-app>
 </template>
 

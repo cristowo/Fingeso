@@ -36,7 +36,7 @@
                     </v-card>
                 </v-col>
 
-                <v-col class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%;">
+                <v-col class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%; padding-bottom:">
                     <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
                         <v-card-title>Evaluaciones</v-card-title>
                         <v-card-subtitle>Realiza las evaluaciones</v-card-subtitle>
@@ -50,6 +50,7 @@
 
                 </v-row>
             </v-container>
+            <Footer></Footer>
         </div>        
     </v-app>
 </template>

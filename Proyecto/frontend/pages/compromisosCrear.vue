@@ -70,6 +70,7 @@
             </v-container>
             
         </div>
+        <Footer></Footer>
     </v-app>
 </template>
 
