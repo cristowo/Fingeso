@@ -30,4 +30,10 @@ public class AcademicoController {
         return academicoService.registrarEvidencia(id_compromiso, evidencia);
     }
 
+    @PostMapping("/academicos/login3")
+    public boolean login(@RequestBody AcademicoEntity nuevo){
+
+        return academicoService.login(nuevo.getCorreo(), nuevo.getClave());
+    }
+
 }

@@ -32,4 +32,17 @@ public class AcademicoService {
         compromiso.setLink(evidencia);
         return compromisoRepository.save(compromiso);
     }
+
+    public boolean login(String correo, String pass) {
+        Iterable<AcademicoEntity> all = academicoRepository.findAll();
+        for (AcademicoEntity r : all) {
+            if (correo.equals(r.getCorreo()) && pass.equals(r.getClave())) {
+                    return true;
+                }
+
+            }
+        return  false;
+    }
+
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 
 @Service
@@ -40,4 +41,20 @@ public class CompromisoService {
         compromiso.setNombre(nombre_compromiso);
         return compromisoRepository.save(compromiso);
     }
+
+
+    public  ArrayList<CompromisoEntity> verCompromisoS(Integer id_academico) {
+        Iterable<CompromisoEntity> allcompromisos = compromisoRepository.findAll();
+        ArrayList<CompromisoEntity> outlist = new ArrayList<>();
+        for(CompromisoEntity r : allcompromisos){
+            if(id_academico == r.getId_academico()) {
+                outlist.add(r);
+            }
+        }
+
+        return  outlist;
+    }
+
+
+
 }

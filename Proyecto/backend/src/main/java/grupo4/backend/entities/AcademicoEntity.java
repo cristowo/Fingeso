@@ -18,4 +18,8 @@ public class AcademicoEntity extends UsuarioEntity{
     private String facultad;
     //comision asiganada a evaluar
     private Integer comision_evaluadora;
+
+
+
+
 }
