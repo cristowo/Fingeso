@@ -7,8 +7,8 @@
             <v-spacer></v-spacer>
             <div class="texto">
                 INFO USUARIO
-                <v-btn href="/menu" color="#EA7600" class="btn-sup">Menu Principal</v-btn>
-                <v-btn color="#002F6C" class="btn-sup">Cerrar Sesión</v-btn>
+                <v-btn href="/menu"  class="btn-sup primary" elevation="10">Menu Principal</v-btn>
+                <v-btn class="btn-sup secondary" elevation="10">Cerrar Sesión</v-btn>
             </div>
         </v-app-bar>
     </div>

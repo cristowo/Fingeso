@@ -14,6 +14,7 @@
                             <v-expansion-panels multiple>
                                 <v-expansion-panel>
                                     <v-expansion-panel-header>Tipo de Compromiso</v-expansion-panel-header>
+                                    <v-divider></v-divider>
                                     <v-expansion-panel-content>
                                         <v-container>
                                             <v-checkbox label="Docencia" hide-details></v-checkbox>
@@ -25,6 +26,7 @@
 
                                 <v-expansion-panel>
                                     <v-expansion-panel-header>Titulo</v-expansion-panel-header>
+                                    <v-divider></v-divider>
                                     <v-expansion-panel-content>
                                         <v-text-field label="Titulo del Compromiso" :rules="rules" hide-details="auto"></v-text-field>
                                     </v-expansion-panel-content>
@@ -32,6 +34,7 @@
 
                                 <v-expansion-panel>
                                     <v-expansion-panel-header>Fechas</v-expansion-panel-header>
+                                    <v-divider></v-divider>
                                     <v-expansion-panel-content>
 
                                         <v-row>
@@ -44,6 +47,7 @@
 
                                 <v-expansion-panel>
                                     <v-expansion-panel-header>Describe tu compromiso</v-expansion-panel-header>
+                                    <v-divider></v-divider>
                                     <v-expansion-panel-content>
                                         <v-text-field label="Descripcion del Compromiso" :rules="rules2" hide-details="auto"></v-text-field>
                                     </v-expansion-panel-content>

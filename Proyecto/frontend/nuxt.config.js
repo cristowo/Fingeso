@@ -45,7 +45,7 @@ export default {
     customVariables: ['~/assets/variables.scss'],
     theme: {
       light: true,
-      themes:{
+      themes: {
         light: {
           primary: 'EA7600',
           secondary: '002F6C',

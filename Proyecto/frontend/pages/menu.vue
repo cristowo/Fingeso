@@ -3,45 +3,46 @@
         <div>
             <appBar></appBar>
             <v-container class="cards">
+                
                 <v-row no-gutters>
-                    
-                <v-col class="compromiso">
-                    <v-card class="texto">
+                
+                <v-col class="compromiso" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%;">
+                    <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
                         <v-card-title>Compromisos</v-card-title>
                         <v-card-subtitle>Agrega o edita tus compromisos</v-card-subtitle>
                         <v-card-text>Añade tus compromisos para más adelante aportar evidencia que respalde sus respectivas realizaciones.</v-card-text>
                         <v-divider></v-divider>
-                        <v-btn href="/compromisosCrear" class="botonCrear primary" elevation="4">
+                        <v-btn href="/compromisosCrear" class="botonCrear primary" elevation="46">
                             Crear
                         </v-btn>
-                        <v-btn href="/compromisos" class="botonVer secondary" elevation="4">
+                        <v-btn href="/compromisos" class="botonVer secondary" elevation="6">
                             Ver
                         </v-btn>
                     </v-card>
                 </v-col>
 
-                <v-col class="evidencia">
-                    <v-card class="texto">
+                <v-col class="evidencia" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%;">
+                    <v-card class="texto pa-2" elevation="8" shaped outlined>
                         <v-card-title>Evidencias</v-card-title>
                         <v-card-subtitle>Agrega o edita tus evidencias</v-card-subtitle>
                         <v-card-text>Añade todo tipo de evidencias para respaldar las realizaciones de tus compromisos y cumplir tus objetivos.</v-card-text>
                         <v-divider></v-divider>
-                        <v-btn href="/evidenciasCrear" class="botonCrear primary" elevation="4">
-                            Crear
+                        <v-btn href="/evidenciasCrear" class="botonCrear primary" elevation="6">
+                            Registrar
                         </v-btn>
-                        <v-btn href="/evidencias" class="botonVer secondary" elevation="4">
+                        <v-btn href="/evidencias" class="botonVer secondary" elevation="6">
                             Ver
                         </v-btn>
                     </v-card>
                 </v-col>
 
-                <v-col class="evaluacion">
-                    <v-card class="texto">
+                <v-col class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%;">
+                    <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
                         <v-card-title>Evaluaciones</v-card-title>
                         <v-card-subtitle>Realiza las evaluaciones</v-card-subtitle>
-                        <v-card-text>Revisa los compromisos de tus academicos asignados y analiza sus evidencias adjuntadas, para luego puntuarlas como corresponda.</v-card-text>
+                        <v-card-text>Revisa los compromisos de tus academicos asignados y analiza sus evidencias adjuntadas.</v-card-text>
                         <v-divider></v-divider>
-                        <v-btn href="/evaluaciones" class="botonBuscar primary" elevation="4">
+                        <v-btn href="/evaluaciones" class="botonBuscar primary" elevation="6">
                             Buscar
                         </v-btn>
                     </v-card>
@@ -49,28 +50,12 @@
 
                 </v-row>
             </v-container>
-        </div>
+        </div>        
     </v-app>
 </template>
 
 <style>
-.compromiso{
-    margin-top: auto;
-    margin-right: auto;
-    position: left;
-}
 
-.evidencia{
-    margin-top: auto;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.evidencia{
-    margin-top: auto;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 .texto{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
