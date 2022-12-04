@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Academicos")
+@Table(name = "academicos")
 @NoArgsConstructor
 @AllArgsConstructor
 //geters and seters
@@ -20,5 +20,6 @@ public class AcademicosEntity {
     private String Email;
     private Integer Rol;
     private String Contraseña;
-
+    private String departamento;
+    private Integer id_comision_evaluadora;
 }

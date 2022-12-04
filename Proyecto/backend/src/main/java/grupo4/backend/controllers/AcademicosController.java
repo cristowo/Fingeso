@@ -18,19 +18,13 @@ public class AcademicosController {
         return academicosService.getAll();
     }
 
-    @PostMapping("/academicos/create")
-    public AcademicosEntity crear(@RequestBody AcademicosEntity new_Academico){
-        AcademicosEntity obj = academicosService.guardar(new_Academico);
-        return obj;
+    @GetMapping("/academicos/name/{rut}/")
+    public String getnamebyrut(@PathVariable Integer rut){
+        return academicosService.getNameByRut(rut);
     }
 
-    @GetMapping("/academicos/prueba/")
-    public List<String> getTodos(){
-        return List.of("Gaspar", "weon");
-    }
-
-    @GetMapping("/academicos/names/")
-    public List<String> getallnames(){
-        return academicosService.getallnames();
+    @PostMapping("/academicos/asignarcomision/{rut}")
+    public AcademicosEntity asignarComision(@PathVariable Integer rut){
+        return academicosService.asignarComision(rut);
     }
 }
