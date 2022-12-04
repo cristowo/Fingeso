@@ -20,19 +20,18 @@ public class AcademicoController {
     }
 
 
-    @GetMapping("/compromiso/crear/{id}")
+    @PostMapping("/compromiso/crear/{id}")
     public CompromisoEntity crearCompromiso(@PathVariable Integer id, @RequestBody String nombre_compromiso, @RequestBody String descripcion, @RequestBody String tipo_compromiso){
         return academicoService.crearCompromiso(id, nombre_compromiso, descripcion, tipo_compromiso);
     }
 
-    @GetMapping("/compromiso/evidencia/registrar/{id_compromiso}")
+    @PostMapping("/compromiso/evidencia/registrar/{id_compromiso}")
     public CompromisoEntity registrarEvidencia(@PathVariable Integer id_compromiso, @RequestBody String evidencia){
         return academicoService.registrarEvidencia(id_compromiso, evidencia);
     }
 
     @PostMapping("/academicos/login3")
     public boolean login(@RequestBody AcademicoEntity nuevo){
-
         return academicoService.login(nuevo.getCorreo(), nuevo.getClave());
     }
 

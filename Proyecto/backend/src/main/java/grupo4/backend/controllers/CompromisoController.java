@@ -17,7 +17,7 @@ public class CompromisoController {
     public ArrayList<String> verCompromiso(@PathVariable Integer id_compromiso){
         return compromisoService.verCompromiso(id_compromiso);
     }
-    @GetMapping("/compromiso/editar/{id_compromiso}")
+    @PostMapping("/compromiso/editar/{id_compromiso}")
     public CompromisoEntity editarCompromiso(@PathVariable Integer id_compromiso, @RequestBody String nombre_compromiso, @RequestBody String descripcion, @RequestBody String tipo_compromiso){
         return compromisoService.editarCompromiso(id_compromiso, nombre_compromiso, descripcion, tipo_compromiso);
     }
