@@ -13,10 +13,7 @@
                     <v-btn href="/compromisosCrear" class="botonCrear" color="#EA7600" elevation="4">
                         Crear
                     </v-btn>
-                    <v-btn href="/compromisosEditar" class="botonCrear" color="#002F6C" elevation="4">
-                        Editar
-                    </v-btn>
-                    <v-btn href="/compromisos" class="botonVer" color="#B1B1B1" elevation="4">
+                    <v-btn href="/compromisos" class="botonVer" color="#002F6C" elevation="4">
                         Ver
                     </v-btn>
                 </v-card>
@@ -31,10 +28,7 @@
                     <v-btn href="/evidenciasCrear" class="botonCrear" color="#EA7600" elevation="4">
                         Crear
                     </v-btn>
-                    <v-btn href="/evidenciasEditar" class="botonCrear" color="#002F6C" elevation="4">
-                        Editar
-                    </v-btn>
-                    <v-btn href="/evidencias" class="botonVer" color="#B1B1B1" elevation="4">
+                    <v-btn href="/evidencias" class="botonVer" color="#002F6C" elevation="4">
                         Ver
                     </v-btn>
                 </v-card>
