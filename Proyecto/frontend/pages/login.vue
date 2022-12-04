@@ -1,22 +1,29 @@
 <template>
     <div>
-        <v-app id="inspire" class="v">
+        <v-app>
             <v-container>
-                <h1>Sistema de Jerarquizacion Academica</h1>
-                <v-row no-gutters>
-                    <v-col class="login">
-                        <v-card class="pa-2" outlined tile>
-                            <div>
+                <v-row>
+                    <v-col style="padding-left: 25%; padding-right: 25%;">
+
+                        <v-card shaped outlined style="margin-top: 35%" elevation="10">
+                            <v-card-title><p style="margin-left: 19%">Sistema de Jerarquización Académica</p></v-card-title>
+                            <v-card-subtitle><LogoUSACH style="width: 75%; margin-left: 12.5%;" class="usach-logo"></LogoUSACH></v-card-subtitle>
+                            
+                            <v-card-text>
                                 <v-form ref="form" v-model="valid" lazy-validation>
-                                    <LogoUSACH class="usach-logo"></LogoUSACH>
-                                    <h2>Inicio de Sesión</h2>
                                     <v-divider></v-divider>
-                                    <v-text-field v-model="email" :rules="emailRules" label="Correo institucional" required></v-text-field>
-                                    <v-text-field v-model="pass" :rules="passRules" label="Contraseña" required ></v-text-field>
-                                    <v-btn :disabled="!valid" class="success mr-4" @click="validate" > Ingresar </v-btn>
+                                    <v-text-field style="margin-left: 25%; margin-right: 25%; margin-top: 5% " v-model="email" :rules="emailRules" label="Correo institucional" required></v-text-field>
+                                    <v-text-field style="margin-left: 25%; margin-right: 25%" v-model="pass" :rules="passRules" label="Contraseña" required></v-text-field>
+
+                                    
                                 </v-form>
-                            </div>
+                            </v-card-text>
+                            
+                            <v-btn style="padding-left:15%; padding-right:15%; margin-left: 28.5%; margin-top: -1%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="validate"> Ingresar </v-btn>
+
+
                         </v-card>
+
                     </v-col>
                 </v-row>
             </v-container>
@@ -63,37 +70,3 @@ import LogoUSACH from '../components/logoUSACH.vue';
     components: { LogoUSACH }
 }
 </script>
-
-<style>
-.v{
-    background-color: white !important;
-}
-.usach-logo {
-  height: auto;
-  width: 40%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.login{
-    margin-right: 5%;
-}
-
-h1 {
-    font-size: 35px;
-    text-align: center;
-    color:black;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-h2 {
-    text-align: center;
-    font-size: 20px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.texto{
-    text-align: center;
-}
-</style>
