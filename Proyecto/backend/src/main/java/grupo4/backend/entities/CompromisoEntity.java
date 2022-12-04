@@ -2,16 +2,9 @@ package grupo4.backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.Data;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
 
 @Entity
 @Table(name = "compromisos")
@@ -28,29 +21,30 @@ public class CompromisoEntity {
             generator = "compromiso_sequence"
     )
     private Integer id_compromiso;
-    private Integer id_academico;
+    private String nombre;
+    private String tipo_compromiso;
     private String descripcion;
-    private String evidencia;
-    @JsonFormat(pattern = "dd/mm/yyyy")
-    private Date fecha;
-
+    // hay que evaluar si se cambia este apartado por un archivo
+    private String link;
+    // puntuacion actual
     private Integer puntuacion;
+    @JsonFormat(pattern = "dd/mm/aaaa")
+    private Date fecha_inicio;
+    @JsonFormat(pattern = "dd/mm/aaaa")
+    private Date fecha_termino;
+    // id del creador del compromiso
+    private Integer id_academico;
+    public String comentarios;
 
-    public CompromisoEntity(Integer id, Integer rut, String desc, String link){
-        this.id_compromiso = id;
-        this.id_academico = rut;
-        this.descripcion = desc;
-        this.evidencia = link;
+    // Creacion de un compromiso
+    public CompromisoEntity(Integer id_academico, String nombre, String tipo_compromiso, String descripcion){
+        this.descripcion = descripcion;
+        this.id_academico = id_academico;
+        this.nombre = nombre;
+        this.tipo_compromiso = tipo_compromiso;
         this.puntuacion = 0;
-        //try {
-            fecha = new Date();
-            //this.fecha = new SimpleDateFormat("dd/mm/yyyy").parse("03/09/2000");
-
-        //} catch (ParseException e) {
-        //    throw new RuntimeException(e);
-        //}
+        this.fecha_inicio = new Date();
     }
-
     public CompromisoEntity() {
 
     }

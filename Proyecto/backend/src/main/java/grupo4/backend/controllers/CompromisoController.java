@@ -1,31 +1,24 @@
 package grupo4.backend.controllers;
 
-import grupo4.backend.Servicies.CompromisoService;
 import grupo4.backend.entities.CompromisoEntity;
-import grupo4.backend.repositories.CompromisoRepository;
+import grupo4.backend.servicies.CompromisoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping
 public class CompromisoController {
     @Autowired
     CompromisoService compromisoService;
-    @PostMapping("/compromisos/actualizar/desc/{compromiso}")
-    public CompromisoEntity actualizarCompromiso(@PathVariable Integer compromiso, @RequestBody String desc){
-        return compromisoService.actualizarCompromiso(compromiso, desc);
+
+    @GetMapping("/compromiso/{id_compromiso}")
+    public ArrayList<String> verCompromiso(@PathVariable Integer id_compromiso){
+        return compromisoService.verCompromiso(id_compromiso);
     }
-
-    @PostMapping("/compromisos/actualizar/evidencia/{compromiso}")
-    public CompromisoEntity actualizarEvidencia(@PathVariable Integer compromiso, @RequestBody String evidencia){
-        return compromisoService.actualizarEvidencia(compromiso, evidencia);
+    @GetMapping("/compromiso/editar/{id_compromiso}")
+    public CompromisoEntity editarCompromiso(@PathVariable Integer id_compromiso, @RequestBody String nombre_compromiso, @RequestBody String descripcion, @RequestBody String tipo_compromiso){
+        return compromisoService.editarCompromiso(id_compromiso, nombre_compromiso, descripcion, tipo_compromiso);
     }
-
-    @PostMapping("/compromiso/{rut}")
-    public CompromisoEntity crearCompromiso(@RequestBody CompromisoEntity compromiso){
-        return compromisoService.makeCompromiso(compromiso);
-    }
-
-
 }
