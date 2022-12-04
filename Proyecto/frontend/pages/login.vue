@@ -1,54 +1,24 @@
 <template>
     <div>
-        <v-spacer size="10"></v-spacer>
-        <h2>Sistema de Jerarquizacion Academica</h2>
         <v-app id="inspire" class="v">
-        <v-container>
-        <v-row no-gutters>
-            <v-col class="login">
-            <v-card
-                class="pa-2"
-                outlined
-                tile
-            >
-            <div>
-                <v-form
-                    ref="form"
-                    v-model="valid"
-                    lazy-validation
-                >
-                    <LogoUSACH class="usach-logo"></LogoUSACH>
-                    <h1>Inicio de Sesión</h1>
-                    <v-text-field
-                    v-model="email"
-                    :rules="emailRules"
-                    label="Correo institucional"
-                    required
-                    ></v-text-field>
-
-                    <v-text-field
-                    v-model="pass"
-                    :rules="passRules"
-                    label="Contraseña"
-                    required
-                    ></v-text-field>
-
-                    <v-btn
-                    :disabled="!valid"
-                    color="success"
-                    class="mr-4"
-                    @click="validate"
-                    >
-                    Ingresar
-                    </v-btn>
-                </v-form>
-            </div>
-            </v-card>
-            </v-col>
-            
-
-            
-            </v-row>
+            <v-container>
+                <h1>Sistema de Jerarquizacion Academica</h1>
+                <v-row no-gutters>
+                    <v-col class="login">
+                        <v-card class="pa-2" outlined tile>
+                            <div>
+                                <v-form ref="form" v-model="valid" lazy-validation>
+                                    <LogoUSACH class="usach-logo"></LogoUSACH>
+                                    <h2>Inicio de Sesión</h2>
+                                    <v-divider></v-divider>
+                                    <v-text-field v-model="email" :rules="emailRules" label="Correo institucional" required></v-text-field>
+                                    <v-text-field v-model="pass" :rules="passRules" label="Contraseña" required ></v-text-field>
+                                    <v-btn :disabled="!valid" class="success mr-4" @click="validate" > Ingresar </v-btn>
+                                </v-form>
+                            </div>
+                        </v-card>
+                    </v-col>
+                </v-row>
             </v-container>
         </v-app>
     </div>
@@ -100,7 +70,7 @@ import LogoUSACH from '../components/logoUSACH.vue';
 }
 .usach-logo {
   height: auto;
-  width: 75%;
+  width: 40%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -108,9 +78,6 @@ import LogoUSACH from '../components/logoUSACH.vue';
 
 .login{
     margin-right: 5%;
-}
-.informacion{
-
 }
 
 h1 {
@@ -122,7 +89,7 @@ h1 {
 
 h2 {
     text-align: center;
-    font-size: 65px;
+    font-size: 20px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 

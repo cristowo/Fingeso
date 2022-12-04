@@ -12,7 +12,6 @@
             </div>
         </v-app-bar>
     </div>
-    
 </template>
 
 <style>

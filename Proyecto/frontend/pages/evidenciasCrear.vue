@@ -1,5 +1,7 @@
 <template>
-    <div>
-        <appBar></appBar>
-    </div>
+    <v-app>
+        <div>
+            <appBar></appBar>
+        </div>
+    </v-app>
 </template>
