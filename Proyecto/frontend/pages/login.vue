@@ -10,16 +10,17 @@
                             <v-card-subtitle><LogoUSACH style="width: 75%;" class="usach-logo"></LogoUSACH></v-card-subtitle>
                             
                             <v-card-text>
-                                <v-form ref="form" v-model="valid" lazy-validation>
+                                <v-form @submit.prevent="Iniciar"
+                                ref="form" v-model="valid" lazy-validation>
                                     <v-divider></v-divider>
-                                    <v-text-field class="text-center" justify="center" style="margin-left: 25%; margin-right: 25%; margin-top: 5% " v-model="email" :rules="emailRules" label="Correo institucional" required></v-text-field>
-                                    <v-text-field style="margin-left: 25%; margin-right: 25%" v-model="pass" :rules="passRules" label="Contraseña" required></v-text-field>
+                                    <v-text-field v-model="correo" class="text-center" justify="center" style="margin-left: 25%; margin-right: 25%; margin-top: 5% " :rules="emailRules" label="Correo institucional" required></v-text-field>
+                                    <v-text-field v-model="clave" style="margin-left: 25%; margin-right: 25%"  :rules="passRules" label="Contraseña" required></v-text-field>
 
-                                    
+                                     <v-btn type="submit" style="padding-left:15%; padding-right:15%; margin-left: 2%; margin-top: -1%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="validate"> Ingresar </v-btn>
                                 </v-form>
                             </v-card-text>
                             
-                            <v-btn style="padding-left:15%; padding-right:15%; margin-left: 2%; margin-top: -1%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="validate"> Ingresar </v-btn>
+                           
 
 
                         </v-card>
@@ -34,16 +35,24 @@
 
 
 <script>
+import axios from 'axios';
 import LogoUSACH from '../components/logoUSACH.vue';
 
   export default {
+    name: 'Iniciar',
+        data: function(){
+            return{
+                correo:"",
+                clave:""
+            }
+        },
     data: () => ({
         valid: true,
-        pass: "",
+        clave: "",
         passRules: [
             v => !!v || "Ingresar contraseña",
         ],
-        email: "",
+        correo: "",
         emailRules: [
             v => !!v || "Ingresar correo",
             v => /.+@.+\..+/.test(v) || "El correo ingresado no es valido",
@@ -58,6 +67,22 @@ import LogoUSACH from '../components/logoUSACH.vue';
         checkbox: false,
     }),
     methods: {
+        async Iniciar(){
+                let json={
+                    "correo": this.correo,
+                    "clave": this.clave
+                };
+                await axios.post("http://localhost:3001/academicos/login", json)
+                .then(data =>{
+                    
+                if(data.status == 200){
+                    localStorage.setItem("NombreAcademico", data.data.nombre);
+                    //console.log(localStorage.getItem("NombreAcademico"));
+                    localStorage.setItem("correo_usuario", this.correo);
+                    this.$router.push('menu');
+                }
+            });
+        },
         validate() {
             this.$refs.form.validate();
         },

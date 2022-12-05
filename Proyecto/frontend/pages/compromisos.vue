@@ -47,9 +47,9 @@ export default {
     methods:{
         getData: async function(){
             let response = await this.$axios.get("/compromiso/viewAll/1")
-            console.log(response.data);
+            //console.log(response.data);
             this.Lcompromisos = response.data;
-            console.log(this.Lcompromisos)
+            //console.log(this.Lcompromisos)
         }
     },
     created:function(){

@@ -2,6 +2,7 @@ package grupo4.backend.servicies;
 
 import grupo4.backend.entities.AcademicoEntity;
 import grupo4.backend.entities.CompromisoEntity;
+import grupo4.backend.entities.UsuarioEntity;
 import grupo4.backend.repositories.AcademicoRepository;
 import grupo4.backend.repositories.CompromisoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +34,15 @@ public class AcademicoService {
         return compromisoRepository.save(compromiso);
     }
 
-    public boolean login(String correo, String pass) {
+    public UsuarioEntity login(String correo, String pass) {
         Iterable<AcademicoEntity> all = academicoRepository.findAll();
         for (AcademicoEntity r : all) {
             if (correo.equals(r.getCorreo()) && pass.equals(r.getClave())) {
-                    return true;
+                    return r;
                 }
 
             }
-        return  false;
+        return null;
     }
 
 

@@ -2,6 +2,7 @@ package grupo4.backend.controllers;
 
 import grupo4.backend.entities.AcademicoEntity;
 import grupo4.backend.entities.CompromisoEntity;
+import grupo4.backend.entities.UsuarioEntity;
 import grupo4.backend.servicies.AcademicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping
+@CrossOrigin("*")
 public class AcademicoController {
     @Autowired
     AcademicoService academicoService;
@@ -30,8 +32,8 @@ public class AcademicoController {
         return academicoService.registrarEvidencia(id_compromiso, evidencia);
     }
 
-    @PostMapping("/academicos/login3")
-    public boolean login(@RequestBody AcademicoEntity nuevo){
+    @PostMapping("/academicos/login")
+    public UsuarioEntity login(@RequestBody AcademicoEntity nuevo){
         return academicoService.login(nuevo.getCorreo(), nuevo.getClave());
     }
 

@@ -55,6 +55,25 @@
     </v-app>
 </template>
 
+<script>
+    export default{
+        name:"Menu",
+        data(){
+            return{
+                nombre_academico: ""
+            }
+        },
+        mounted(){
+            if(!localStorage.getItem("NombreAcademico")){
+               this.$router.push("/login");    
+        }
+        else{
+            this.nombre_academico = localStorage.getItem("NombreAcademico");
+        }
+    }
+}
+</script>
+
 <style>
 
 

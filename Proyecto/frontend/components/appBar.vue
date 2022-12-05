@@ -6,14 +6,30 @@
             </a>
             <v-spacer></v-spacer>
             <div class="texto">
-                INFO USUARIO
+                {{INFO_USUARIO}}
                 <v-btn href="/menu"  class="btn-sup primary" elevation="10">Menu Principal</v-btn>
-                <v-btn class="btn-sup secondary" elevation="10">Cerrar Sesión</v-btn>
+                <v-btn v-on:click="CerrarSesión()" class="btn-sup secondary" elevation="10">Cerrar Sesión</v-btn>
             </div>
         </v-app-bar>
     </div>
 </template>
 
+<script>
+    export default{
+        data: function(){
+            return{
+                INFO_USUARIO: localStorage.getItem("NombreAcademico")
+            }
+        },
+        methods:{
+            CerrarSesión(){
+            localStorage.clear();
+            this.$router.push("/login");
+        }
+    }
+
+}
+</script>
 <style>
 .logo{
     position: relative !important;
