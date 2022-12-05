@@ -51,7 +51,6 @@ public class CompromisoService {
                 outlist.add(r);
             }
         }
-
         return  outlist;
     }
 

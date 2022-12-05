@@ -28,9 +28,9 @@ public class CompromisoEntity {
     private String link;
     // puntuacion actual
     private Integer puntuacion;
-    @JsonFormat(pattern = "dd/mm/aaaa")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date fecha_inicio;
-    @JsonFormat(pattern = "dd/mm/aaaa")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date fecha_termino;
     // id del creador del compromiso
     private Integer id_academico;
