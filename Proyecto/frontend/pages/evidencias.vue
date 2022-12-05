@@ -8,9 +8,9 @@
                     v-for="(L, i) in Lcompromisos"
                         :key="i"
                     >
-                        <v-col style="margin-bottom:3% ;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-left: 10px;">
+                        <v-col  v-if= "L.link !== null " style="margin-bottom:3% ;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-left: 10px;">
                             <v-card shaped style="margin-left:1%;">
-                                <v-card-title>Evidencia del compromiso: {{L.nombre}}</v-card-title>
+                                <v-card-title>Evidencia del compromiso: {{L.nombre}} </v-card-title>
                                 <v-card-subtitle><b>Fecha de subida: {{L.fecha_inicio}} </b></v-card-subtitle>
                                 <v-card-text>Contenido: {{L.link}}</v-card-text>
                                 <v-divider style="margin-bottom: 0.5%;"></v-divider>
