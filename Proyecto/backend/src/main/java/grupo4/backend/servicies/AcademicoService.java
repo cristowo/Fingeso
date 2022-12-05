@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -22,8 +23,7 @@ public class AcademicoService {
         return academicoRepository.findAll();
     }
 
-    public CompromisoEntity crearCompromiso(Integer id_user, String nombre_compromiso, String descripcion, String tipo_compromiso){
-        CompromisoEntity compromiso = new CompromisoEntity(id_user, nombre_compromiso, tipo_compromiso, descripcion);
+    public CompromisoEntity crearCompromiso(CompromisoEntity compromiso){
         return compromisoRepository.save(compromiso);
     }
 

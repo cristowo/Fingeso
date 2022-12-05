@@ -43,7 +43,6 @@ public class CompromisoEntity {
         this.nombre = nombre;
         this.tipo_compromiso = tipo_compromiso;
         this.puntuacion = 0;
-        this.fecha_inicio = new Date();
     }
     public CompromisoEntity() {
 

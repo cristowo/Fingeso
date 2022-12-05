@@ -13,8 +13,8 @@ public class CompromisoController {
     @Autowired
     CompromisoService compromisoService;
 
-    @GetMapping("/compromiso/{id_compromiso}")
-    public ArrayList<String> verCompromiso(@PathVariable Integer id_compromiso){
+    @GetMapping("/compromiso/view/{id_compromiso}")
+    public CompromisoEntity verCompromiso(@PathVariable Integer id_compromiso){
         return compromisoService.verCompromiso(id_compromiso);
     }
     @PostMapping("/compromiso/editar/{id_compromiso}")

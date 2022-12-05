@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @RestController
 @RequestMapping
@@ -22,9 +23,9 @@ public class AcademicoController {
     }
 
 
-    @PostMapping("/compromiso/crear/{id}")
-    public CompromisoEntity crearCompromiso(@PathVariable Integer id, @RequestBody String nombre_compromiso, @RequestBody String descripcion, @RequestBody String tipo_compromiso){
-        return academicoService.crearCompromiso(id, nombre_compromiso, descripcion, tipo_compromiso);
+    @PostMapping("/compromiso/crear")
+    public CompromisoEntity crearCompromiso(@RequestBody CompromisoEntity compromiso){
+        return academicoService.crearCompromiso(compromiso);
     }
 
     @PostMapping("/compromiso/evidencia/registrar/{id_compromiso}")
