@@ -2,7 +2,6 @@
     <v-app>
         <div>
             <appBar></appBar>
-
             <div>
                 <v-container>
                     <v-row no-gutters style="margin-bottom: 1%;"
@@ -30,7 +29,7 @@
                                 </v-card-action>
 
                                 <v-card-action>
-                                    <v-btn href="/evidencias" class="botonVer secondary" elevation="6" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                    <v-btn v-bind:href="'/compromiso/evidencia/' + L.id_compromiso" class="botonVer secondary" elevation="6" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                         Ver Evidencias
                                     </v-btn>
                                 </v-card-action>
@@ -58,9 +57,7 @@ export default {
     methods:{
         getData: async function(){
             let response = await this.$axios.get("http://localhost:3001/compromiso/viewAll/" + localStorage.getItem("IdAcademico")) //cambiar puerto cuando lo prueben
-            //console.log(response.data);
             this.Lcompromisos = response.data;
-            //console.log(this.Lcompromisos)
         }
     },
     created:function(){

@@ -21,20 +21,6 @@
                         </v-btn>
                     </v-card>
                 </v-col>
-                <v-col class="evidencia" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%;">
-                    <v-card class="texto pa-2" elevation="8" shaped outlined>
-                        <v-card-title>Evidencias</v-card-title>
-                        <v-card-subtitle>Agrega o edita tus evidencias</v-card-subtitle>
-                        <v-card-text>Añade todo tipo de evidencias para respaldar las realizaciones de tus compromisos y cumplir tus objetivos.</v-card-text>
-                        <v-divider></v-divider>
-                        <v-btn href="/evidenciasCrear" class="botonCrear primary" elevation="6">
-                            Registrar
-                        </v-btn>
-                        <v-btn href="/evidencias" class="botonVer secondary" elevation="6">
-                            Ver
-                        </v-btn>
-                    </v-card>
-                </v-col>
                 <v-col class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%; padding-bottom:">
                     <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
                         <v-card-title>Evaluaciones</v-card-title>

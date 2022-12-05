@@ -45,9 +45,7 @@ export default {
     methods:{
         getData: async function(){
             let response = await this.$axios.get("http://localhost:3001/compromiso/viewAll/" + localStorage.getItem("IdAcademico")) //cambiar puerto cuando lo prueben
-            //console.log(response.data);
             this.Lcompromisos = response.data;
-            //console.log(this.Lcompromisos)
         }
     },
     created:function(){

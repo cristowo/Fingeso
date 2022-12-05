@@ -14,10 +14,12 @@ public class CompromisoService {
     @Autowired
     CompromisoRepository compromisoRepository;
 
-    public CompromisoEntity verCompromiso(Integer id_compromiso){
+    public ArrayList<CompromisoEntity> verCompromiso(Integer id_compromiso){
         Optional<CompromisoEntity> compromisoaux = compromisoRepository.findById(id_compromiso);
         CompromisoEntity compromiso = compromisoaux.get();
-        return compromiso;
+        ArrayList<CompromisoEntity> array = new ArrayList<>();
+        array.add(compromiso);
+        return array;
     }
 
     public CompromisoEntity editarCompromiso(Integer id_compromiso, String nombre_compromiso, String descripcion, String tipo_compromiso){
