@@ -27,7 +27,6 @@
                                             <input type="checkbox" id="vinculación con el medio" value="Vinculación con el medio" v-model="checked">
                                             <label for="vinculación con el medio">Vinculación con el medio</label>
                                             <br>
-                                            <span>Checked: {{ checked }}</span>
                                         </v-container>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -158,6 +157,7 @@ import axios from 'axios';
                 .then(response =>{
                     console.log(response);
                 })
+                this.$router.push('compromisos');
             }
         }
 

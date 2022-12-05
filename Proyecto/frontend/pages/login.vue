@@ -5,7 +5,7 @@
                 <v-row>
                     <v-col class="text-center" justify="center" style="padding-left: 25%; padding-right: 25%;">
 
-                        <v-card class="text-center" justify="center" shaped outlined style="margin-top: 35%" elevation="10">
+                        <v-card class="text-center" justify="center" shaped outlined style="margin-top: 15%" elevation="10">
                             <v-card-title><p style="margin-left:19%">Sistema de Jerarquización Académica</p></v-card-title>
                             <v-card-subtitle><LogoUSACH style="width: 75%;" class="usach-logo"></LogoUSACH></v-card-subtitle>
                             
@@ -20,9 +20,6 @@
                                 </v-form>
                             </v-card-text>
                             
-                           
-
-
                         </v-card>
 
                     </v-col>
@@ -74,13 +71,18 @@ import LogoUSACH from '../components/logoUSACH.vue';
                 };
                 await axios.post("http://localhost:3001/academicos/login", json)
                 .then(data =>{
-                    
+                
                 if(data.status == 200){
                     localStorage.setItem("NombreAcademico", data.data.nombre);
                     localStorage.setItem("correo_usuario", this.correo);
                     localStorage.setItem("IdAcademico", data.data.id_user);
                     this.$router.push('menu');
                 }
+                console.log(data);
+                if(data.data == ''){
+                    this.$router.push('login');
+                }
+
             });
         },
         validate() {

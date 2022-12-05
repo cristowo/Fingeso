@@ -23,6 +23,17 @@
                                     </v-btn>
 
                                 </v-card-action>
+                                <v-card-action>
+                                    <v-btn href="/evidenciasCrear" class="botonCrear primary" elevation="6"  style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                        Registrar Evidencia
+                                    </v-btn>
+                                </v-card-action>
+
+                                <v-card-action>
+                                    <v-btn href="/evidencias" class="botonVer secondary" elevation="6" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                        Ver Evidencias
+                                    </v-btn>
+                                </v-card-action>
                             </v-card>
                         </v-col>
                     </v-row>  

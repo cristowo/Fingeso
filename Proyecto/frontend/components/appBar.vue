@@ -7,7 +7,7 @@
             </a>
             
             <v-spacer></v-spacer>
-            {{nombre_academico}}
+            Bienvenido/a {{nombre_academico}}
             <div class="texto">
                 <v-btn href="/menu"  class="btn-sup primary" elevation="10">Menu Principal</v-btn>
                 <v-btn v-on:click="CerrarSesión()" class="btn-sup secondary" elevation="10">Cerrar Sesión</v-btn>
