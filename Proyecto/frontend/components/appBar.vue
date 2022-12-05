@@ -1,12 +1,14 @@
 <template>
     <div>
         <v-app-bar elevation="4" height="90">
+            
             <a href="/menu">
                 <logoUSACH class="logo"></logoUSACH>
             </a>
+            
             <v-spacer></v-spacer>
+            {{nombre_academico}}
             <div class="texto">
-                {{INFO_USUARIO}}
                 <v-btn href="/menu"  class="btn-sup primary" elevation="10">Menu Principal</v-btn>
                 <v-btn v-on:click="CerrarSesión()" class="btn-sup secondary" elevation="10">Cerrar Sesión</v-btn>
             </div>
@@ -16,11 +18,17 @@
 
 <script>
     export default{
-        data: function(){
+        data(){
             return{
-                INFO_USUARIO: localStorage.getItem("NombreAcademico")
+                nombre_academico: ""
             }
         },
+        mounted(){
+            if(localStorage.getItem("NombreAcademico")){
+               this.nombre_academico = localStorage.getItem("NombreAcademico");   
+            }
+        },
+
         methods:{
             CerrarSesión(){
             localStorage.clear();

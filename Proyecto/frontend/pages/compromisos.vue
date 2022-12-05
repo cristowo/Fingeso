@@ -46,7 +46,7 @@ export default {
     },
     methods:{
         getData: async function(){
-            let response = await this.$axios.get("/compromiso/viewAll/1")
+            let response = await this.$axios.get("http://localhost:8080/compromiso/viewAll/1") //cambiar puerto cuando lo prueben
             //console.log(response.data);
             this.Lcompromisos = response.data;
             //console.log(this.Lcompromisos)

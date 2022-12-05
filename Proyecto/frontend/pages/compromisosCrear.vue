@@ -4,6 +4,7 @@
             <appBar></appBar>
             
             <v-container>
+                <form @submit.prevent="obtener">
                 <v-card style="font-family:'Lucida', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: justify;">
                     <v-card-title>Creacion de Compromiso</v-card-title>
                     <v-card-subtitle><b>Rellena los campos necesarios con la información pertinente</b></v-card-subtitle>
@@ -17,9 +18,16 @@
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
                                         <v-container>
-                                            <v-checkbox label="Docencia" hide-details></v-checkbox>
-                                            <v-checkbox label="Investigación" hide-details></v-checkbox>
-                                            <v-checkbox label="Vinculación con el medio" hide-details></v-checkbox>
+                                            <input type="checkbox" id="docencia" value="Docencia" v-model="checked">
+                                            <label for="docencia">Docencia</label>
+
+                                            <input type="checkbox" id="investigacion" value="Investigacion" v-model="checked">
+                                            <label for="investigacion">Investigacion</label>
+
+                                            <input type="checkbox" id="vinculación con el medio" value="Vinculación con el medio" v-model="checked">
+                                            <label for="vinculación con el medio">Vinculación con el medio</label>
+                                            <br>
+                                            <span>Checked: {{ checked }}</span>
                                         </v-container>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -28,7 +36,7 @@
                                     <v-expansion-panel-header>Titulo</v-expansion-panel-header>
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
-                                        <v-text-field label="Titulo del Compromiso" :rules="rules" hide-details="auto"></v-text-field>
+                                        <v-text-field v-model="titulo_comp" label="Titulo del Compromiso" hide-details="auto"></v-text-field>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
 
@@ -49,7 +57,7 @@
                                     <v-expansion-panel-header>Describe tu compromiso</v-expansion-panel-header>
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
-                                        <v-text-field label="Descripcion del Compromiso" :rules="rules2" hide-details="auto"></v-text-field>
+                                        <v-text-field v-model= "descripcion" label="Descripcion del Compromiso" hide-details="auto"></v-text-field>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
 
@@ -57,24 +65,27 @@
                         </div>
                         
                         <v-divider style="margin-top:1%; margin-bottom: 0.5%;"></v-divider>
-                        <v-card-action>
-                            <v-btn fab dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                        <v-card-actions>
+                            <v-btn type= "submit" fab dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                 <v-icon dark>
                                     mdi-plus
                                 </v-icon>
                             </v-btn>
-                        </v-card-action>
+                        </v-card-actions>
                     
                     </v-card-text>
                 </v-card>
+            </form>
             </v-container>
-            
+        
+        
         </div>
         <Footer></Footer>
     </v-app>
 </template>
 
 <script>
+import axios from 'axios';
     export default{
         data: vm => ({
             rules: [
@@ -94,11 +105,24 @@
             menu: false,
             menu2: false,
         }),
-
+        name: "obtener",
+        data(){
+            return{
+                checked: [],
+                titulo_comp: "",
+                descripcion: ""
+            }
+        },
+        mounted(){
+            if(!localStorage.getItem("NombreAcademico")){
+               this.$router.push("/login");    
+            }
+        },
         computed: {
             computedDateFormatted () {
             return this.formatDate(this.date)
             },
+            
         },
 
         watch: {
@@ -123,7 +147,19 @@
             const [day, month, year] = date.split('/')
             return `${day.padStart(2, '0')}-${month.padStart(2, '0')}-${year}`
             },
-        },
+            async obtener(){
+                let json={
+                    "id_academico": localStorage.getItem("IdAcademico"),
+                    "nombre": this.titulo_comp,
+                    "tipo_compromiso": this.checked[0],
+                    "descripcion": this.descripcion,
+                };
+                await axios.post("http://localhost:8080/compromiso/crear", json) //cambiar puerto cuando lo prueben
+                .then(response =>{
+                    console.log(response);
+                })
+            }
+        }
 
     }   
 </script>

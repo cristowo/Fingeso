@@ -72,13 +72,13 @@ import LogoUSACH from '../components/logoUSACH.vue';
                     "correo": this.correo,
                     "clave": this.clave
                 };
-                await axios.post("http://localhost:3001/academicos/login", json)
+                await axios.post("http://localhost:8080/academicos/login", json)
                 .then(data =>{
                     
                 if(data.status == 200){
                     localStorage.setItem("NombreAcademico", data.data.nombre);
-                    //console.log(localStorage.getItem("NombreAcademico"));
                     localStorage.setItem("correo_usuario", this.correo);
+                    localStorage.setItem("IdAcademico", data.data.id_user);
                     this.$router.push('menu');
                 }
             });

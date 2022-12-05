@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping
+@CrossOrigin("*")
 public class CompromisoController {
     @Autowired
     CompromisoService compromisoService;
