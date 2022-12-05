@@ -154,7 +154,7 @@ import axios from 'axios';
                     "tipo_compromiso": this.checked[0],
                     "descripcion": this.descripcion,
                 };
-                await axios.post("http://localhost:8080/compromiso/crear", json) //cambiar puerto cuando lo prueben
+                await axios.post("http://localhost:3001/compromiso/crear", json) //cambiar puerto cuando lo prueben
                 .then(response =>{
                     console.log(response);
                 })

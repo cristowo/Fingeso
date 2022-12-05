@@ -72,7 +72,7 @@ import LogoUSACH from '../components/logoUSACH.vue';
                     "correo": this.correo,
                     "clave": this.clave
                 };
-                await axios.post("http://localhost:8080/academicos/login", json)
+                await axios.post("http://localhost:3001/academicos/login", json)
                 .then(data =>{
                     
                 if(data.status == 200){
