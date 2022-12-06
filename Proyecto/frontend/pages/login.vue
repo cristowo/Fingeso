@@ -79,7 +79,8 @@ import LogoUSACH from '../components/logoUSACH.vue';
                     this.$router.push('menu');
                 }
                 console.log(data);
-                if(data.data == ''){
+                if(data.data === ''){
+                    pop.push()
                     this.$router.push('login');
                 }
 
