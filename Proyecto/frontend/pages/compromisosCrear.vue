@@ -17,16 +17,10 @@
                                     <v-expansion-panel-header>Tipo de Compromiso</v-expansion-panel-header>
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
-                                        <v-container>
-                                            <input type="checkbox" id="docencia" value="Docencia" v-model="checked">
-                                            <label for="docencia">Docencia</label>
-
-                                            <input type="checkbox" id="investigacion" value="Investigacion" v-model="checked">
-                                            <label for="investigacion">Investigacion</label>
-
-                                            <input type="checkbox" id="vinculación con el medio" value="Vinculación con el medio" v-model="checked">
-                                            <label for="vinculación con el medio">Vinculación con el medio</label>
-                                            <br>
+                                        <v-container fluid>
+                                            <v-checkbox v-model="checked" label="Docencia" value="Docencia"></v-checkbox>
+                                            <v-checkbox v-model="checked" label="Investigación" value="Investigacion"></v-checkbox>
+                                            <v-checkbox v-model="checked" label="Vinculación con el Medio" value="Vinculacion con el medio"></v-checkbox>
                                         </v-container>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -43,10 +37,10 @@
                                     <v-expansion-panel-header>Fechas</v-expansion-panel-header>
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
-
-                                        <v-row>
-                                            <calendarioInicio></calendarioInicio>
-                                            <calendarioFin></calendarioFin>
+                                        
+                                        <v-row style="padding-top: 1.6%; padding-left: 5%">
+                                            <calendarioInicio style="padding-left: 15%;"></calendarioInicio>
+                                            <calendarioFin style="padding-left: 20%;"></calendarioFin>
                                         </v-row>
                                         
                                     </v-expansion-panel-content>
@@ -107,7 +101,7 @@ import axios from 'axios';
         name: "obtener",
         data(){
             return{
-                checked: [],
+                checked: "",
                 titulo_comp: "",
                 descripcion: ""
             }
@@ -150,13 +144,17 @@ import axios from 'axios';
                 let json={
                     "id_academico": localStorage.getItem("IdAcademico"),
                     "nombre": this.titulo_comp,
-                    "tipo_compromiso": this.checked[0],
+                    "tipo_compromiso": this.checked,
                     "descripcion": this.descripcion,
                 };
                 await axios.post("http://localhost:3001/compromiso/crear", json) //cambiar puerto cuando lo prueben
                 .then(response =>{
                     console.log(response);
+                    console.log(localStorage.getItem('fechaInicio'));
+                    
                 })
+                localStorage.removeItem('fechaInicio');
+                
                 this.$router.push('compromisos');
             }
         }

@@ -1,8 +1,15 @@
 <template>
-    <v-col cols="12" sm="6" md="4" >
+  <div>
+    Selecciona la fecha de fin
+    <v-col cols="12" sm="6" md="4">
         <v-dialog ref="dialog"  v-model="modal" :return-value.sync="date" persistent width="290px">
           <template v-slot:activator="{ on, attrs }">
-            <v-text-field v-model="dateFormatted" label="Fecha de Termino" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on" ></v-text-field>
+            <v-btn v-model="dateFormatted" value="dateFormatted" class="mx-4 secondary" dark icon v-bind="attrs" v-on="on">
+              <v-icon>
+                mdi-calendar
+              </v-icon>
+            </v-btn>
+            
           </template>
           <v-date-picker v-model="date" scrollable locale="cl-es">
             <v-spacer></v-spacer>
@@ -11,6 +18,8 @@
           </v-date-picker>
         </v-dialog>
       </v-col>
+      <p>Fecha seleccionada: {{ dateFormatted }}</p>
+  </div>
 </template>
 
 <script>
@@ -38,6 +47,7 @@ export default{
             formatDate (date) {
             if (!date) return null
             const [year, month, day] = date.split('-')
+            localStorage.setItem('fechaFin',this.dateFormatted);
             return `${day}/${month}/${year}`
             },
             parseDate (date) {
