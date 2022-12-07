@@ -6,8 +6,8 @@
             <v-container>
                 <form @submit.prevent="obtener">
                 <v-card style="font-family:'Lucida', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: justify;">
-                    <v-card-title>Creacion de Compromiso</v-card-title>
-                    <v-card-subtitle><b>Rellena los campos necesarios con la información pertinente</b></v-card-subtitle>
+                    <v-card-title>Edicion de Compromiso</v-card-title>
+                    <v-card-subtitle><b>Rellena solo los campos que deseas cambiar con la información pertinente</b></v-card-subtitle>
                     <v-divider></v-divider>
                     <v-card-text>
                     
@@ -67,7 +67,7 @@
                         <v-card-actions>
                             <v-btn type= "submit" fab dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                 <v-icon dark>
-                                    mdi-plus
+                                    mdi-check
                                 </v-icon>
                             </v-btn>
                         </v-card-actions>
@@ -109,7 +109,8 @@ import axios from 'axios';
             return{
                 checked: [],
                 titulo_comp: "",
-                descripcion: ""
+                descripcion: "",
+                Lcompromisos: []
             }
         },
         mounted(){
@@ -138,6 +139,10 @@ import axios from 'axios';
             return `${day}/${month}/${year}`
             },
 
+            getData: async function(){
+                let response = await this.$axios.get("http://localhost:3001/compromiso/viewAll/" + localStorage.getItem("IdAcademico")) //cambiar puerto cuando lo prueben
+                this.Lcompromisos = response.data;
+            },
             
             
             parseDate (date) {
@@ -148,12 +153,11 @@ import axios from 'axios';
             },
             async obtener(){
                 let json={
-                    "id_academico": localStorage.getItem("IdAcademico"),
-                    "nombre": this.titulo_comp,
-                    "tipo_compromiso": this.checked[0],
+                    "nombre_compromiso": this.titulo_comp,
                     "descripcion": this.descripcion,
+                    "tipo_compromiso": this.checked[0]
                 };
-                await axios.post("http://localhost:3001/compromiso/crear", json) //cambiar puerto cuando lo prueben
+                await axios.post("http://localhost:3001/compromiso/editar" + this.$route.params.id, json) //cambiar puerto cuando lo prueben
                 .then(response =>{
                     console.log(response);
                 })

@@ -76,13 +76,14 @@ import LogoUSACH from '../components/logoUSACH.vue';
                     localStorage.setItem("NombreAcademico", data.data.nombre);
                     localStorage.setItem("correo_usuario", this.correo);
                     localStorage.setItem("IdAcademico", data.data.id_user);
-                    this.$router.push('menu');
+                    if(data.data.nombre === undefined){
+                        window.alert("correo o contraseña no coinceden con las credenciales registradas en el sistema")
+                    }else{
+                        this.$router.push('menu');
+                    }
                 }
+                console.log(data.data.nombre);
                 console.log(data);
-                if(data.data === ''){
-                    pop.push()
-                    this.$router.push('login');
-                }
 
             });
         },
