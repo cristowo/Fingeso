@@ -45,6 +45,6 @@ public class CompromisoEntity {
         this.puntuacion = 0;
     }
     public CompromisoEntity() {
-
+        this.puntuacion = 0;
     }
 }

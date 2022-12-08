@@ -105,7 +105,7 @@ import axios from 'axios';
             menu2: false,
         }),
         name: "obtener",
-        data(){
+        data: function(){
             return{
                 checked: [],
                 titulo_comp: "",
@@ -140,28 +140,36 @@ import axios from 'axios';
             },
 
             getData: async function(){
-                let response = await this.$axios.get("http://localhost:3001/compromiso/viewAll/" + localStorage.getItem("IdAcademico")) //cambiar puerto cuando lo prueben
+                let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
                 this.Lcompromisos = response.data;
-            },
-            
-            
-            parseDate (date) {
-            if (!date) return null
-
-            const [day, month, year] = date.split('/')
-            return `${day.padStart(2, '0')}-${month.padStart(2, '0')}-${year}`
-            },
-            async obtener(){
+                console.log(this.Lcompromisos);
+                if(this.titulo_comp == undefined || this.titulo_comp == ""){
+                    this.titulo_comp = this.Lcompromisos.nombre;
+                }
+                if(this.descripcion == undefined || this.descripcion == ""){
+                    this.descripcion = this.Lcompromisos.descripcion;
+                }
+                if(this.checked[0] == undefined || this.checked[0] == ""){
+                    this.checked[0] = this.Lcompromisos.tipo_compromiso;
+                }
                 let json={
-                    "nombre_compromiso": this.titulo_comp,
+                    "nombre": this.titulo_comp,
                     "descripcion": this.descripcion,
                     "tipo_compromiso": this.checked[0]
                 };
-                await axios.post("http://localhost:3001/compromiso/editar" + this.$route.params.id, json) //cambiar puerto cuando lo prueben
-                .then(response =>{
-                    console.log(response);
-                })
-                this.$router.push('compromisos');
+                console.log(json);
+                await axios.put("http://localhost:3001/compromiso/editar/" + this.$route.params.id, json) //cambiar puerto cuando lo prueben
+                this.$router.push('/compromisos');
+            },
+            
+            parseDate (date) {
+                if (!date) return null
+
+                const [day, month, year] = date.split('/')
+                return `${day.padStart(2, '0')}-${month.padStart(2, '0')}-${year}`
+            },
+            async obtener(){
+                this.getData();
             }
         }
 

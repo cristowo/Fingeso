@@ -15,12 +15,10 @@ public class CompromisoService {
     @Autowired
     CompromisoRepository compromisoRepository;
 
-    public ArrayList<CompromisoEntity> verCompromiso(Integer id_compromiso){
+    public CompromisoEntity verCompromiso(Integer id_compromiso){
         Optional<CompromisoEntity> compromisoaux = compromisoRepository.findById(id_compromiso);
         CompromisoEntity compromiso = compromisoaux.get();
-        ArrayList<CompromisoEntity> array = new ArrayList<>();
-        array.add(compromiso);
-        return array;
+        return compromiso;
     }
     @PutMapping("{id_compromiso}")
     public CompromisoEntity editarCompromiso(Integer id_compromiso, CompromisoEntity compromiso2){

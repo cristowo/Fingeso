@@ -15,10 +15,10 @@ public class CompromisoController {
     CompromisoService compromisoService;
 
     @GetMapping("/compromiso/view/{id_compromiso}")
-    public ArrayList<CompromisoEntity> verCompromiso(@PathVariable Integer id_compromiso){
+    public CompromisoEntity verCompromiso(@PathVariable Integer id_compromiso){
         return compromisoService.verCompromiso(id_compromiso);
     }
-    @PostMapping("/compromiso/editar/{id_compromiso}")
+    @PutMapping("/compromiso/editar/{id_compromiso}")
     public CompromisoEntity editarCompromiso(@PathVariable Integer id_compromiso, @RequestBody CompromisoEntity compromiso){
         return compromisoService.editarCompromiso(id_compromiso, compromiso);
     }
