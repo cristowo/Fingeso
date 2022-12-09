@@ -4,7 +4,6 @@
             <v-container>
                 <v-row>
                     <v-col class="text-center" justify="center" style="padding-left: 25%; padding-right: 25%;">
-
                         <v-card class="text-center" justify="center" shaped outlined style="margin-top: 15%" elevation="10">
                             <v-card-title><p style="margin-left:19%">Sistema de Jerarquización Académica</p></v-card-title>
                             <v-card-subtitle><LogoUSACH style="width: 75%;" class="usach-logo"></LogoUSACH></v-card-subtitle>
@@ -16,15 +15,11 @@
                                     <v-text-field v-model="correo" class="text-center" justify="center" style="margin-left: 25%; margin-right: 25%; margin-top: 5% " :rules="emailRules" label="Correo institucional" required></v-text-field>
                                     <v-text-field v-model="clave" type = "password" style="margin-left: 25%; margin-right: 25%"  :rules="passRules" label="Contraseña" required></v-text-field>
 
-                                    <v-btn type="submit" style="padding-left:15%; padding-right:15%; margin-left: 2%; margin-top: 3%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="snackbar = true">
-                                         Ingresar 
-                                    </v-btn>
-
+                                     <v-btn type="submit" style="padding-left:15%; padding-right:15%; margin-left: 2%; margin-top: -1%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="validate"> Ingresar </v-btn>
                                 </v-form>
                             </v-card-text>
                             
                         </v-card>
-
                     </v-col>
                 </v-row>
             </v-container>
@@ -32,20 +27,15 @@
         </v-app>
     </div>
 </template>
-
-
 <script>
 import axios from 'axios';
 import LogoUSACH from '../components/logoUSACH.vue';
-
   export default {
     name: 'Iniciar',
         data: function(){
             return{
                 correo:"",
-                clave:"",
-
-                
+                clave:""
             }
         },
     data: () => ({
@@ -76,10 +66,8 @@ import LogoUSACH from '../components/logoUSACH.vue';
                 };
                 await axios.post("http://localhost:3001/academicos/login", json)
                 .then(data =>{
-
-                console.log(data);
                 
-                if(data.data != ''){
+                if(data.status == 200){
                     localStorage.setItem("NombreAcademico", data.data.nombre);
                     localStorage.setItem("correo_usuario", this.correo);
                     localStorage.setItem("IdAcademico", data.data.id_user);
@@ -91,13 +79,10 @@ import LogoUSACH from '../components/logoUSACH.vue';
                 }
                 console.log(data.data.nombre);
                 console.log(data);
-
             });
         },
         validate() {
             this.$refs.form.validate();
-            this.textoSnackbar = "LOGEADO LOL";
-            this.snackbar = true;
         },
         reset() {
             this.$refs.form.reset();
