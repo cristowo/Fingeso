@@ -15,7 +15,7 @@
                                 <v-card-text>{{L.descripcion}}</v-card-text>
                                 <v-divider style="margin-bottom: 0.5%;"></v-divider>
                                 <v-card-action>
-                                    <v-btn fab dark href = "/compromisosEditar" class="primary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                    <v-btn fab dark v-bind:href= "'/compromiso/editar/' + L.id_compromiso" class="primary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                         <v-icon dark>
                                             mdi-pencil
                                         </v-icon>

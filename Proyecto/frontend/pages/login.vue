@@ -14,7 +14,7 @@
                                 ref="form" v-model="valid" lazy-validation>
                                     <v-divider></v-divider>
                                     <v-text-field v-model="correo" class="text-center" justify="center" style="margin-left: 25%; margin-right: 25%; margin-top: 5% " :rules="emailRules" label="Correo institucional" required></v-text-field>
-                                    <v-text-field v-model="clave" style="margin-left: 25%; margin-right: 25%"  :rules="passRules" label="Contraseña" required></v-text-field>
+                                    <v-text-field v-model="clave" type = "password" style="margin-left: 25%; margin-right: 25%"  :rules="passRules" label="Contraseña" required></v-text-field>
 
                                     <v-btn type="submit" style="padding-left:15%; padding-right:15%; margin-left: 2%; margin-top: 3%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="snackbar = true">
                                          Ingresar 
@@ -83,12 +83,15 @@ import LogoUSACH from '../components/logoUSACH.vue';
                     localStorage.setItem("NombreAcademico", data.data.nombre);
                     localStorage.setItem("correo_usuario", this.correo);
                     localStorage.setItem("IdAcademico", data.data.id_user);
-                    this.$router.push('menu');
-                }else{
-                    this.$router.push('login');
-                    localStorage.clear();
+                    if(data.data.nombre === undefined){
+                        window.alert("correo o contraseña no coinceden con las credenciales registradas en el sistema")
+                    }else{
+                        this.$router.push('menu');
+                    }
                 }
-                
+                console.log(data.data.nombre);
+                console.log(data);
+
             });
         },
         validate() {
