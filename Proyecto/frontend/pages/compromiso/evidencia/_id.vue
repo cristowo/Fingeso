@@ -45,7 +45,7 @@ export default {
     methods:{
         getData: async function(){
             let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
-            this.Lcompromisos = response.data;
+            this.Lcompromisos.push(response.data);
         }
     },
     created:function(){
