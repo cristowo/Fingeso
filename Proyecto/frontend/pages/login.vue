@@ -16,7 +16,10 @@
                                     <v-text-field v-model="correo" class="text-center" justify="center" style="margin-left: 25%; margin-right: 25%; margin-top: 5% " :rules="emailRules" label="Correo institucional" required></v-text-field>
                                     <v-text-field v-model="clave" type = "password" style="margin-left: 25%; margin-right: 25%"  :rules="passRules" label="Contraseña" required></v-text-field>
 
-                                     <v-btn type="submit" style="padding-left:15%; padding-right:15%; margin-left: 2%; margin-top: -1%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="validate"> Ingresar </v-btn>
+                                    <v-btn type="submit" style="padding-left:15%; padding-right:15%; margin-left: 2%; margin-top: 3%; margin-bottom:5%" :disabled="!valid" class="primary mr-4" @click="snackbar = true">
+                                         Ingresar 
+                                    </v-btn>
+
                                 </v-form>
                             </v-card-text>
                             
@@ -40,7 +43,9 @@ import LogoUSACH from '../components/logoUSACH.vue';
         data: function(){
             return{
                 correo:"",
-                clave:""
+                clave:"",
+
+                
             }
         },
     data: () => ({
@@ -71,8 +76,10 @@ import LogoUSACH from '../components/logoUSACH.vue';
                 };
                 await axios.post("http://localhost:3001/academicos/login", json)
                 .then(data =>{
+
+                console.log(data);
                 
-                if(data.status == 200){
+                if(data.data != ''){
                     localStorage.setItem("NombreAcademico", data.data.nombre);
                     localStorage.setItem("correo_usuario", this.correo);
                     localStorage.setItem("IdAcademico", data.data.id_user);
@@ -89,6 +96,8 @@ import LogoUSACH from '../components/logoUSACH.vue';
         },
         validate() {
             this.$refs.form.validate();
+            this.textoSnackbar = "LOGEADO LOL";
+            this.snackbar = true;
         },
         reset() {
             this.$refs.form.reset();

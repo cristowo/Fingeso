@@ -7,7 +7,10 @@
             </a>
             
             <v-spacer></v-spacer>
+
             Bienvenido/a {{nombre_academico}}
+            <v-divider vertical style="margin-left:1%; margin-right:1%"></v-divider>
+
             <div class="texto">
                 <v-btn href="/menu"  class="btn-sup primary" elevation="10">Menu Principal</v-btn>
                 <v-btn v-on:click="CerrarSesión()" class="btn-sup secondary" elevation="10">Cerrar Sesión</v-btn>
