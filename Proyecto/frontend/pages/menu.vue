@@ -27,7 +27,7 @@
                         <v-card-subtitle>Realiza las evaluaciones</v-card-subtitle>
                         <v-card-text>Revisa los compromisos de tus academicos asignados y analiza sus evidencias adjuntadas.</v-card-text>
                         <v-divider></v-divider>
-                        <v-btn href="/evaluaciones" class="botonBuscar primary" elevation="6">
+                        <v-btn href="/listaacademicos" class="botonBuscar primary" elevation="6">
                             Buscar
                         </v-btn>
                     </v-card>

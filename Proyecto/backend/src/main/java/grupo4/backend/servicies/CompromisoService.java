@@ -1,6 +1,7 @@
 package grupo4.backend.servicies;
 
 import grupo4.backend.entities.CompromisoEntity;
+import grupo4.backend.repositories.AcademicoRepository;
 import grupo4.backend.repositories.CompromisoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,6 @@ public class CompromisoService {
         return compromisoRepository.save(compromiso);
     }
 
-
     public  ArrayList<CompromisoEntity> verCompromisoS(Integer id_academico) {
         Iterable<CompromisoEntity> allcompromisos = compromisoRepository.findAll();
         ArrayList<CompromisoEntity> outlist = new ArrayList<>();
@@ -47,6 +47,7 @@ public class CompromisoService {
         }
         return  outlist;
     }
+
 
 
 

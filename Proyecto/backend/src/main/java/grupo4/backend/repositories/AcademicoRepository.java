@@ -10,4 +10,5 @@ import java.util.ArrayList;
 public interface AcademicoRepository extends CrudRepository<AcademicoEntity, Integer> {
     @Override
     ArrayList<AcademicoEntity> findAll();
+
 }
