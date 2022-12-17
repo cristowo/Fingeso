@@ -125,7 +125,13 @@ import axios from 'axios';
             },
             // entregar archivo "file" para subida a base de datas
             async subirNuevoArchivo(){
-                await axios.post("http://localhost:3001/compromiso/evidencia/subir/" + this.$route.params.id, this.file)
+                let formData = new FormData();
+                formData.append('file', this.file);
+                await axios.post("http://localhost:3001/compromiso/evidencia/subir/" + this.$route.params.id, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
                 this.$router.push('/compromiso/evidencia/' + this.$route.params.id);
             }
         }

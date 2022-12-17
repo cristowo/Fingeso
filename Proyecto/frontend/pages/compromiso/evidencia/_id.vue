@@ -18,12 +18,20 @@
                                 Puntaje Academico 2: {{L.puntuacion_academico2}}<br>
                                 Puntaje Academico 3: {{L.puntuacion_academico3}}<br>
                                 Puntaje Promedio: {{L.puntuacion_total}}<br><br>
-                                Contenido: {{L.link}}<br>
+                                Nombre Archivo actual: {{L.nombre_archivo}}<br>
+                                <br>
+                                <div v-if= "existeArchivo()">
                                 <v-btn @click = "descargar" dark class="primary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                     <v-icon dark>
                                         mdi-download
                                     </v-icon>
                                 </v-btn>
+                                <v-btn @click = "eliminarevidencia" v-if="isOwner(L.id_academico)" dark class="danger" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                        <v-icon dark>
+                                            mdi-delete
+                                        </v-icon>
+                                </v-btn>
+                                </div>
                                 </v-card-text>
                                 <v-divider style="margin-bottom: 0.5%;"></v-divider>
                                 <v-card-action v-if = "isOwner(L.id_academico)">
@@ -120,10 +128,22 @@ export default {
         editarevidencia(){
             this.$router.push('/compromiso/evidencia/editar/' + this.$route.params.id);
         },
+        async eliminarevidencia(){
+            await axios.post("http://localhost:3001/compromiso/evidencia/eliminar/" + this.$route.params.id);
+            location.reload();
+        },
         //falta implementar
         descargar(){
             //aceder a link externo
             window.open(this.Lcompromisos[0].link);
+        },
+        existeArchivo(){
+            if(this.Lcompromisos[0].nombre_archivo == null){
+                return false;
+            }
+            else{
+                return true;
+            }
         },
 
     },

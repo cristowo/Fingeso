@@ -41,7 +41,7 @@ public class AcademicoController {
     }
 
     @PostMapping("/compromiso/evidencia/subir/{id_compromiso}")
-    public CompromisoEntity uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Integer id_compromiso) throws IOException {
+    public CompromisoEntity uploadFile(@RequestParam(value = "file") MultipartFile file, @PathVariable Integer id_compromiso) throws IOException {
         return academicoService.store(file, id_compromiso);
     }
 
