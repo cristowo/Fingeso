@@ -27,7 +27,10 @@ public class CompromisoEntity {
     // hay que evaluar si se cambia este apartado por un archivo
     private String link;
     // puntuacion actual
-    private Integer puntuacion;
+    private Integer puntuacion_academico1;
+    private Integer puntuacion_academico2;
+    private Integer puntuacion_academico3;
+    private Integer puntuacion_total;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date fecha_inicio;
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -42,9 +45,15 @@ public class CompromisoEntity {
         this.id_academico = id_academico;
         this.nombre = nombre;
         this.tipo_compromiso = tipo_compromiso;
-        this.puntuacion = 0;
+        this.puntuacion_academico1 = 0;
+        this.puntuacion_academico2 = 0;
+        this.puntuacion_academico3 = 0;
+        this.puntuacion_total = 0;
     }
     public CompromisoEntity() {
-        this.puntuacion = 0;
+        this.puntuacion_academico1 = 0;
+        this.puntuacion_academico2 = 0;
+        this.puntuacion_academico3 = 0;
+        this.puntuacion_total = 0;
     }
 }

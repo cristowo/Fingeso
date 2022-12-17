@@ -22,11 +22,6 @@
                                     </v-btn>
 
                                 </v-card-action>
-                                <v-card-action>
-                                    <v-btn href="/evidenciasCrear" class="botonCrear primary" elevation="6"  style="margin-bottom: 0.5%; margin-left: 0.5%;">
-                                        Registrar Evidencia
-                                    </v-btn>
-                                </v-card-action>
 
                                 <v-card-action>
                                     <v-btn v-bind:href="'/compromiso/evidencia/' + L.id_compromiso" class="botonVer secondary" elevation="6" style="margin-bottom: 0.5%; margin-left: 0.5%;">

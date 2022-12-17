@@ -24,10 +24,25 @@ public class ComisionEvaluacionService {
     @Autowired
     AcademicoRepository academicoRepository;
 
-    public CompromisoEntity asignarPuntaje(Integer id_compromiso, Integer puntaje) {
+    public CompromisoEntity asignarPuntaje(Integer id_evaluador, Integer id_compromiso, Integer puntaje) {
+        // encontrar compromiso
         Optional<CompromisoEntity> aux = compromisoRepository.findById(id_compromiso);
         CompromisoEntity compromiso = aux.get();
-        compromiso.setPuntuacion(compromiso.getPuntuacion() + puntaje);
+        // encontrar comision
+        // primero hay que encontrar al academico que es
+        Optional<AcademicoEntity> auxAcademico = academicoRepository.findById(compromiso.getId_academico());
+        AcademicoEntity academico = auxAcademico.get();
+        // encontramos la comision
+        Optional<ComisionEvaluacionEntity> auxComision = comisionEvaluacionRepository.findById(academico.getComision_evaluadora());
+        if(auxComision.get().getId_academico_1() == id_evaluador){
+            compromiso.setPuntuacion_academico1(puntaje);
+        }else if(auxComision.get().getId_academico_2() == id_evaluador){
+            compromiso.setPuntuacion_academico2(puntaje);
+        }else if(auxComision.get().getId_academico_3() == id_evaluador){
+            compromiso.setPuntuacion_academico3(puntaje);
+        }
+
+        compromiso.setPuntuacion_total((compromiso.getPuntuacion_academico1() + compromiso.getPuntuacion_academico2() + compromiso.getPuntuacion_academico3())/3);
         return compromisoRepository.save(compromiso);
     }
 

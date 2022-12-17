@@ -48,6 +48,7 @@ export default {
 
   proxy: {
     "/compromiso/viewAll/1": "http://localhost:3001",
+    "/comisionE/revisionAcademico/": "http://localhost:3001",
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
