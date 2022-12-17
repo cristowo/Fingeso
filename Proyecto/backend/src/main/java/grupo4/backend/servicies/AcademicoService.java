@@ -50,7 +50,17 @@ public class AcademicoService {
 
     public CompromisoEntity store(MultipartFile file, Integer id_compromiso) throws IOException {
         Optional<CompromisoEntity> antiguo = compromisoRepository.findById(id_compromiso);
-        antiguo.get().setData(file.getBytes());
+        antiguo.get().setArchivo(file.getBytes());
+        antiguo.get().setNombre_archivo(file.getOriginalFilename());
+        antiguo.get().setTipo_archivo(file.getContentType());
+        return compromisoRepository.save(antiguo.get());
+    }
+
+    public CompromisoEntity delete(Integer id_compromiso){
+        Optional<CompromisoEntity> antiguo = compromisoRepository.findById(id_compromiso);
+        antiguo.get().setArchivo(null);
+        antiguo.get().setNombre_archivo(null);
+        antiguo.get().setTipo_archivo(null);
         return compromisoRepository.save(antiguo.get());
     }
 

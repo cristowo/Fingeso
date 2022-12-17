@@ -42,7 +42,9 @@ public class CompromisoEntity {
 
     // archivo en arreglo de bytes
     @Lob
-    private byte[] data;
+    private byte[] archivo;
+    private String nombre_archivo;
+    private String tipo_archivo;
 
 
     // Creacion de un compromiso

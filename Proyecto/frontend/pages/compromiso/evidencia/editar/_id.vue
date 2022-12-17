@@ -6,15 +6,19 @@
             <v-container> 
                 <form @submit.prevent="obtener"> 
                 <v-card style="font-family:'Lucida', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: justify;">
-                    <v-card-title>Edicion de Compromiso</v-card-title>
-                    <v-card-subtitle><b>Rellena solo los campos que deseas cambiar con la información pertinente</b></v-card-subtitle>
+                    <v-card-title>Edicion de evidencia</v-card-title>
+                    <v-card-subtitle><b>Agrega 1 archivo, si agrega mas de 1 solo se agregara el ultimo.</b></v-card-subtitle>
                     <v-divider></v-divider>
                     <v-card-text>
                         <template> 
-                        <v-file-input v-model = "file" accept="image/*" label="File input">
+
+                        <form enctype="multipart/form-data">
+                        <v-file-input v-model ="file" label="File input">
                         </v-file-input>
+                        </form>
+
                         </template>
-                        <v-btn @click = "subirNuevoArchivo" fab dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                        <v-btn @click = "subirNuevoArchivo" dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                             <v-icon dark>
                                 mdi-check
                             </v-icon>
@@ -120,7 +124,7 @@ import axios from 'axios';
                 this.getData();
             },
             // entregar archivo "file" para subida a base de datas
-            subirNuevoArchivo: async function(){
+            async subirNuevoArchivo(){
                 await axios.post("http://localhost:3001/compromiso/evidencia/subir/" + this.$route.params.id, this.file)
                 this.$router.push('/compromiso/evidencia/' + this.$route.params.id);
             }

@@ -44,4 +44,9 @@ public class AcademicoController {
     public CompromisoEntity uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Integer id_compromiso) throws IOException {
         return academicoService.store(file, id_compromiso);
     }
+
+    @PostMapping("/compromiso/evidencia/eliminar/{id_compromiso}")
+    public CompromisoEntity deleteFile(@PathVariable Integer id_compromiso){
+        return academicoService.delete(id_compromiso);
+    }
 }
