@@ -7,7 +7,10 @@ import grupo4.backend.repositories.AcademicoRepository;
 import grupo4.backend.repositories.CompromisoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
@@ -45,5 +48,10 @@ public class AcademicoService {
         return null;
     }
 
+    public CompromisoEntity store(MultipartFile file, Integer id_compromiso) throws IOException {
+        Optional<CompromisoEntity> antiguo = compromisoRepository.findById(id_compromiso);
+        antiguo.get().setData(file.getBytes());
+        return compromisoRepository.save(antiguo.get());
+    }
 
 }

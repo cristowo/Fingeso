@@ -3,6 +3,7 @@ package grupo4.backend.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -38,6 +39,11 @@ public class CompromisoEntity {
     // id del creador del compromiso
     private Integer id_academico;
     public String comentarios;
+
+    // archivo en arreglo de bytes
+    @Lob
+    private byte[] data;
+
 
     // Creacion de un compromiso
     public CompromisoEntity(Integer id_academico, String nombre, String tipo_compromiso, String descripcion){

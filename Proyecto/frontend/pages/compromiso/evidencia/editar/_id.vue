@@ -3,43 +3,22 @@
         <div>
             <appBar></appBar>
             
-            <v-container>
-                <form @submit.prevent="obtener">
+            <v-container> 
+                <form @submit.prevent="obtener"> 
                 <v-card style="font-family:'Lucida', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: justify;">
                     <v-card-title>Edicion de Compromiso</v-card-title>
                     <v-card-subtitle><b>Rellena solo los campos que deseas cambiar con la información pertinente</b></v-card-subtitle>
                     <v-divider></v-divider>
                     <v-card-text>
-                    
-                        <div>
-                            subir archivo compromioso
-                            <v-file-input
-                                v-model="file"
-                                :rules="rules"
-                                label="Archivo"
-                                prepend-icon="mdi-paperclip"
-                                multiple
-                                chips
-                                outlined
-                                dense
-                                placeholder="Selecciona un archivo"
-                                accept="image/*, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt"
-                                show-size
-                                counter
-                                persistent-hint
-                            ></v-file-input>
-
-                        </div>
-                        
-                        <v-divider style="margin-top:1%; margin-bottom: 0.5%;"></v-divider>
-                        <v-card-actions>
-                            <v-btn type= "submit" fab dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
-                                <v-icon dark>
-                                    mdi-check
-                                </v-icon>
-                            </v-btn>
-                        </v-card-actions>
-                    
+                        <template> 
+                        <v-file-input v-model = "file" accept="image/*" label="File input">
+                        </v-file-input>
+                        </template>
+                        <v-btn @click = "subirNuevoArchivo" fab dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                            <v-icon dark>
+                                mdi-check
+                            </v-icon>
+                        </v-btn>
                     </v-card-text>
                 </v-card>
             </form>
@@ -78,7 +57,8 @@ import axios from 'axios';
                 checked: [],
                 titulo_comp: "",
                 descripcion: "",
-                Lcompromisos: []
+                Lcompromisos: [],
+                file: null,
             }
         },
         mounted(){
@@ -138,6 +118,11 @@ import axios from 'axios';
             },
             async obtener(){
                 this.getData();
+            },
+            // entregar archivo "file" para subida a base de datas
+            subirNuevoArchivo: async function(){
+                await axios.post("http://localhost:3001/compromiso/evidencia/subir/" + this.$route.params.id, this.file)
+                this.$router.push('/compromiso/evidencia/' + this.$route.params.id);
             }
         }
 

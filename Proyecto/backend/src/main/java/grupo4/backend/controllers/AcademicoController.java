@@ -6,7 +6,9 @@ import grupo4.backend.entities.UsuarioEntity;
 import grupo4.backend.servicies.AcademicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,4 +40,8 @@ public class AcademicoController {
         return academicoService.login(nuevo.getCorreo(), nuevo.getClave());
     }
 
+    @PostMapping("/compromiso/evidencia/subir/{id_compromiso}")
+    public CompromisoEntity uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Integer id_compromiso) throws IOException {
+        return academicoService.store(file, id_compromiso);
+    }
 }
