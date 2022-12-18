@@ -47,6 +47,7 @@
                                         <v-icon dark>
                                             mdi-check-all
                                         </v-icon>
+                                        <v-divider vertical color = "white" style="margin-right: 5%; margin-left: 5%;"></v-divider>
                                         Evaluar
                                     </v-btn>
                                         <v-dialog v-model="dialog" max-width="300">
@@ -134,9 +135,25 @@ export default {
             location.reload();
         },
         //falta implementar
-        descargar(){
-            //aceder a link externo
-            window.open(this.Lcompromisos[0].link);
+        async descargar(){
+            //descargar archivo
+            let response = await this.$axios.get("http://localhost:3001/compromiso/evidencia/download/" + this.$route.params.id);
+            // transformar el archivo a un blob
+            console.log(response.data);
+
+            const byteCharacters = atob(response.data);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], {type: this.Lcompromisos[0].tipo_archivo});
+            // crear un link para descargar el archivo
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = this.Lcompromisos[0].nombre_archivo;
+            link.click();
+
         },
         existeArchivo(){
             if(this.Lcompromisos[0].nombre_archivo == null){

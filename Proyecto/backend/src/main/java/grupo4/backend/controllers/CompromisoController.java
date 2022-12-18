@@ -27,4 +27,9 @@ public class CompromisoController {
     public  ArrayList<CompromisoEntity> viewAllC(@PathVariable Integer id_usuario){
         return  compromisoService.verCompromisoS(id_usuario);
     }
+
+    @GetMapping("/compromiso/evidencia/download/{id_compromiso}")
+    public byte[] descargar(@PathVariable Integer id_compromiso){
+        return compromisoService.descargarArchivo(id_compromiso);
+    }
 }

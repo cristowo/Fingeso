@@ -54,7 +54,9 @@ public class CompromisoService {
         return  outlist;
     }
 
-
-
+    public byte[] descargarArchivo(Integer id_compromiso){
+        Optional<CompromisoEntity> compromiso = compromisoRepository.findById(id_compromiso);
+        return compromiso.get().getArchivo();
+    }
 
 }

@@ -15,7 +15,11 @@
                                 <v-card-text>{{L.descripcion}}</v-card-text>
                                 <v-divider style="margin-bottom: 0.5%;"></v-divider>
                                 <v-card-action>
-                                    <v-btn v-bind:href="'/compromiso/evidencia/' + L.id_compromiso" class="botonVer secondary" elevation="6" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                    <v-btn v-bind:href="'/compromiso/evidencia/' + L.id_compromiso" class="botonVer primary" elevation="6" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                        <v-icon dark>
+                                            mdi-eye
+                                        </v-icon>
+                                        <v-divider vertical color = "white" style = "margin-left: 3%; margin-right: 3%;"></v-divider>
                                         Ver Evidencias
                                     </v-btn>
                                 </v-card-action>

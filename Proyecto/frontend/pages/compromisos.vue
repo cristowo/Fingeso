@@ -29,7 +29,7 @@
                                         <v-icon>
                                             mdi-eye
                                         </v-icon>
-                                        Ver
+                                        Ver evidencia
                                     </v-btn>
                                 </v-card-action>
                             </v-card>
