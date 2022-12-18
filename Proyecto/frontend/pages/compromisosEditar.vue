@@ -37,9 +37,9 @@
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
 
-                                        <v-row>
-                                            <calendarioInicio></calendarioInicio>
-                                            <calendarioFin></calendarioFin>
+                                        <v-row style="padding-top: 1.6%; padding-left: 5%">
+                                            <calendarioInicio style="padding-left: 15%;"></calendarioInicio>
+                                            <calendarioFin style="padding-left: 20%;"></calendarioFin>
                                         </v-row>
                                         
                                     </v-expansion-panel-content>

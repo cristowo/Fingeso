@@ -18,7 +18,7 @@
           </v-date-picker>
         </v-dialog>
       </v-col>
-      <p>Fecha seleccionada: {{ dateFormatted }}</p>
+      <p>Fecha seleccionada: {{ dateFormatted}}</p>
   </div>
 </template>
 
@@ -40,6 +40,10 @@ export default{
         watch: {
             date (val) {
             this.dateFormatted = this.formatDate(this.date)
+            
+            localStorage.setItem('fechaInicio',this.dateFormatted);
+            
+            
             },
         },
 
@@ -47,7 +51,7 @@ export default{
             formatDate (date) {
             if (!date) return null
             const [year, month, day] = date.split('-')
-            localStorage.setItem('fechaInicio',this.dateFormatted);
+            //localStorage.setItem('fechaInicio',this.dateFormatted);
             return `${day}/${month}/${year}`
             },
             parseDate (date) {

@@ -7,13 +7,13 @@
                 <form @submit.prevent="obtener"> 
                 <v-card style="font-family:'Lucida', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: justify;">
                     <v-card-title>Edicion de evidencia</v-card-title>
-                    <v-card-subtitle><b>Agrega 1 archivo, si agrega mas de 1 solo se agregara el ultimo.</b></v-card-subtitle>
+                    <v-card-subtitle><b>Si ya subió un archivo, al subir otro lo reemplazará</b></v-card-subtitle>
                     <v-divider></v-divider>
                     <v-card-text>
                         <template> 
 
                         <form enctype="multipart/form-data">
-                        <v-file-input v-model ="file" label="File input">
+                        <v-file-input v-model ="file" label="Selecciona tu archivo (maximo 600 MB)" show-size counter>
                         </v-file-input>
                         </form>
 

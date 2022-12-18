@@ -40,6 +40,7 @@ export default{
         watch: {
             date (val) {
             this.dateFormatted = this.formatDate(this.date)
+            localStorage.setItem('fechaFin',this.dateFormatted);
             },
         },
 
@@ -47,7 +48,6 @@ export default{
             formatDate (date) {
             if (!date) return null
             const [year, month, day] = date.split('-')
-            localStorage.setItem('fechaFin',this.dateFormatted);
             return `${day}/${month}/${year}`
             },
             parseDate (date) {

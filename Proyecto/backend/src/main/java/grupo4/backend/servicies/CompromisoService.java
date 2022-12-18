@@ -34,6 +34,12 @@ public class CompromisoService {
         if(compromiso2.getNombre() != null) {
             compromiso.setNombre(compromiso2.getNombre());
         }
+        if(compromiso2.getFecha_inicioSTR() != null){
+            compromiso.setFecha_inicioSTR(compromiso2.getFecha_inicioSTR());
+        }
+        if(compromiso2.getFecha_terminoSTR() != null){
+            compromiso.setFecha_terminoSTR(compromiso2.getFecha_terminoSTR());
+        }
         return compromisoRepository.save(compromiso);
     }
 

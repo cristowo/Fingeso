@@ -32,10 +32,10 @@ public class CompromisoEntity {
     private Integer puntuacion_academico2;
     private Integer puntuacion_academico3;
     private Integer puntuacion_total;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date fecha_inicio;
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date fecha_termino;
+
+    private String fecha_inicioSTR;
+
+    private String fecha_terminoSTR;
     // id del creador del compromiso
     private Integer id_academico;
     public String comentarios;
@@ -48,7 +48,7 @@ public class CompromisoEntity {
 
 
     // Creacion de un compromiso
-    public CompromisoEntity(Integer id_academico, String nombre, String tipo_compromiso, String descripcion){
+    public CompromisoEntity(Integer id_academico, String nombre, String tipo_compromiso, String descripcion, String fecha, String fecha2){
         this.descripcion = descripcion;
         this.id_academico = id_academico;
         this.nombre = nombre;
@@ -56,6 +56,8 @@ public class CompromisoEntity {
         this.puntuacion_academico1 = 0;
         this.puntuacion_academico2 = 0;
         this.puntuacion_academico3 = 0;
+        this.fecha_inicioSTR = fecha;
+        this.fecha_terminoSTR = fecha2;
         this.puntuacion_total = 0;
     }
     public CompromisoEntity() {

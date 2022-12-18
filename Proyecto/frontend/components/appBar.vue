@@ -8,13 +8,36 @@
             
             <v-spacer></v-spacer>
 
-            Bienvenido/a {{nombre_academico}}
-            <v-divider vertical style="margin-left:1%; margin-right:1%"></v-divider>
+            <v-menu v-model="menu" :close-on-content-click="false" :nudge-right="40" offset-y min-width="290px">
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn class="ma-2" icon color="primary" v-bind="attrs" v-on="on">
+                        <v-icon>mdi-account</v-icon>
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-avatar>
+                            <v-icon>mdi-account</v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                            <v-list-item-title class="title">{{nombre_academico}}</v-list-item-title>
+                            <v-list-item-subtitle>{{correo_usuario}}</v-list-item-subtitle>
+                            <v-divider horizontal></v-divider>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                        <v-spacer></v-spacer>
+                        <v-btn v-on:click="CerrarSesión()" class="btn-sup primary" elevation="10">
+                            <v-icon>
+                                mdi-logout
+                            </v-icon>
+                            <v-divider vertical color="white" style="margin-left:1%; margin-right:1%;"></v-divider>
+                            Cerrar Sesión
+                        </v-btn>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
 
-            <div class="texto">
-                <v-btn href="/menu"  class="btn-sup primary" elevation="10">Menu Principal</v-btn>
-                <v-btn v-on:click="CerrarSesión()" class="btn-sup secondary" elevation="10">Cerrar Sesión</v-btn>
-            </div>
         </v-app-bar>
     </div>
 </template>
@@ -23,12 +46,14 @@
     export default{
         data(){
             return{
-                nombre_academico: ""
+                nombre_academico: "",
+                correo_usuario: ""
             }
         },
         mounted(){
             if(localStorage.getItem("NombreAcademico")){
                this.nombre_academico = localStorage.getItem("NombreAcademico");   
+               this.correo_usuario = localStorage.getItem("correo_usuario")
             }
         },
 

@@ -6,7 +6,7 @@
             <v-container>
                 <form @submit.prevent="obtener">
                 <v-card style="font-family:'Lucida', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: justify;">
-                    <v-card-title>Edicion de Compromiso</v-card-title>
+                    <v-card-title>Edicion del Compromiso {{nombre.nombre}} </v-card-title>
                     <v-card-subtitle><b>Rellena solo los campos que deseas cambiar con la información pertinente</b></v-card-subtitle>
                     <v-divider></v-divider>
                     <v-card-text>
@@ -17,16 +17,10 @@
                                     <v-expansion-panel-header>Tipo de Compromiso</v-expansion-panel-header>
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
-                                        <v-container>
-                                            <input type="checkbox" id="docencia" value="Docencia" v-model="checked">
-                                            <label for="docencia">Docencia</label>
-
-                                            <input type="checkbox" id="investigacion" value="Investigacion" v-model="checked">
-                                            <label for="investigacion">Investigacion</label>
-
-                                            <input type="checkbox" id="vinculación con el medio" value="Vinculación con el medio" v-model="checked">
-                                            <label for="vinculación con el medio">Vinculación con el medio</label>
-                                            <br>
+                                        <v-container fluid>
+                                            <v-checkbox v-model="checked" label="Docencia" value="Docencia"></v-checkbox>
+                                            <v-checkbox v-model="checked" label="Investigación" value="Investigacion"></v-checkbox>
+                                            <v-checkbox v-model="checked" label="Vinculación con el Medio" value="Vinculacion con el medio"></v-checkbox>
                                         </v-container>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
@@ -35,7 +29,7 @@
                                     <v-expansion-panel-header>Titulo</v-expansion-panel-header>
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
-                                        <v-text-field v-model="titulo_comp" label="Titulo del Compromiso" hide-details="auto"></v-text-field>
+                                        <v-text-field v-model="titulo_comp" label="Titulo del Compromiso" ></v-text-field>
                                     </v-expansion-panel-content>
                                 </v-expansion-panel>
 
@@ -44,9 +38,9 @@
                                     <v-divider></v-divider>
                                     <v-expansion-panel-content>
 
-                                        <v-row>
-                                            <calendarioInicio></calendarioInicio>
-                                            <calendarioFin></calendarioFin>
+                                        <v-row style="padding-top: 1.6%; padding-left: 5%">
+                                            <calendarioInicio style="padding-left: 15%;"></calendarioInicio>
+                                            <calendarioFin style="padding-left: 20%;"></calendarioFin>
                                         </v-row>
                                         
                                     </v-expansion-panel-content>
@@ -107,10 +101,11 @@ import axios from 'axios';
         name: "obtener",
         data: function(){
             return{
-                checked: [],
+                checked: "",
                 titulo_comp: "",
                 descripcion: "",
-                Lcompromisos: []
+                Lcompromisos: [],
+                nombre: [],
             }
         },
         mounted(){
@@ -139,26 +134,43 @@ import axios from 'axios';
             return `${day}/${month}/${year}`
             },
 
+            async getNombre(){
+                let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
+                this.nombre = response.data;
+            },
+
+            
+
             getData: async function(){
                 let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
                 this.Lcompromisos = response.data;
-                console.log(this.Lcompromisos);
+                console.log(this.fecha_inicioSTR);
                 if(this.titulo_comp == undefined || this.titulo_comp == ""){
                     this.titulo_comp = this.Lcompromisos.nombre;
                 }
                 if(this.descripcion == undefined || this.descripcion == ""){
                     this.descripcion = this.Lcompromisos.descripcion;
                 }
-                if(this.checked[0] == undefined || this.checked[0] == ""){
-                    this.checked[0] = this.Lcompromisos.tipo_compromiso;
+                if(this.checked == undefined || this.checked == ""){
+                    this.checked = this.Lcompromisos.tipo_compromiso;
+                }
+                if(this.fecha_inicioSTR == undefined || this.fecha_inicioSTR == ""){
+                    this.fecha_inicioSTR = this.Lcompromisos.fecha_inicioSTR;
+                }
+                if(this.fecha_finSTR == undefined || this.fecha_finSTR == ""){
+                    this.fecha_finSTR = this.Lcompromisos.fecha_finSTR;
                 }
                 let json={
                     "nombre": this.titulo_comp,
                     "descripcion": this.descripcion,
-                    "tipo_compromiso": this.checked[0]
+                    "tipo_compromiso": this.checked,
+                    "fecha_inicioSTR": localStorage.getItem("fechaInicio"),
+                    "fecha_terminoSTR": localStorage.getItem("fechaFin")
                 };
                 console.log(json);
                 await axios.put("http://localhost:3001/compromiso/editar/" + this.$route.params.id, json) //cambiar puerto cuando lo prueben
+                localStorage.removeItem('fechaInicio');
+                localStorage.removeItem('fechaFin');
                 this.$router.push('/compromisos');
             },
             
@@ -171,8 +183,10 @@ import axios from 'axios';
             async obtener(){
                 this.getData();
             }
-        }
-
+        },
+        created:function(){
+                this.getNombre();
+        },
     }   
 </script>
 

@@ -26,7 +26,7 @@
                                         mdi-download
                                     </v-icon>
                                 </v-btn>
-                                <v-btn @click = "eliminarevidencia" v-if="isOwner(L.id_academico)" dark class="danger" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                <v-btn @click = "eliminarevidencia" v-if="isOwner(L.id_academico)" dark class="secondary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                         <v-icon dark>
                                             mdi-delete
                                         </v-icon>
@@ -35,10 +35,11 @@
                                 </v-card-text>
                                 <v-divider style="margin-bottom: 0.5%;"></v-divider>
                                 <v-card-action v-if = "isOwner(L.id_academico)">
-                                    <v-btn @click = "editarevidencia" fab dark class="primary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                                    <v-btn @click = "editarevidencia" dark class="primary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                         <v-icon dark>
                                             mdi-pencil
                                         </v-icon>
+                                        Subir/Editar archivo
                                     </v-btn>
                                 </v-card-action>
                                 <v-card-action v-else>

@@ -140,15 +140,17 @@ import axios from 'axios';
                     "nombre": this.titulo_comp,
                     "tipo_compromiso": this.checked,
                     "descripcion": this.descripcion,
+                    "fecha_inicioSTR": localStorage.getItem('fechaInicio'),
+                    "fecha_terminoSTR": localStorage.getItem('fechaFin')
                 };
                 await axios.post("http://localhost:3001/compromiso/crear", json) //cambiar puerto cuando lo prueben
                 .then(response =>{
                     console.log(response);
-                    console.log(localStorage.getItem('fechaInicio'));
+                    //console.log(localStorage.getItem('fechaInicio'));
                     
                 })
                 localStorage.removeItem('fechaInicio');
-                
+                localStorage.removeItem('fechaFin');
                 this.$router.push('compromisos');
             }
         }
