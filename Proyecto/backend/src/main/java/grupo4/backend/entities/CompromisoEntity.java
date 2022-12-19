@@ -10,7 +10,14 @@ import java.util.Date;
 @Entity
 @Table(name = "compromisos")
 @Data
+
+
+/*
+ * Clase : CompromisoEntity
+ * Descripcion : Clase que representa a un compromiso
+ */
 public class CompromisoEntity {
+    //Generacion de id automatico
     @Id
     @SequenceGenerator(
             name = "compromiso_sequence",

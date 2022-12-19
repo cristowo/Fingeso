@@ -43,15 +43,20 @@
 <script>
     export default{
         name:"Menu",
+        /*data() define un string vacio que se utilizará en los otros metodos */
         data(){
             return{
                 nombre_academico: ""
             }
         },
+        
+        /*mounted() se ejecuta cuando se carga la vista, se utiliza para verificar si el usuario esta logeado */
         mounted(){
             if(!localStorage.getItem("NombreAcademico")){
                this.$router.push("/login");    
         }
+
+        /*Se obtiene el nombre del academico logeado y se guarda en la variable nombre_academico */
         else{
             this.nombre_academico = localStorage.getItem("NombreAcademico");
         }
@@ -61,7 +66,7 @@
 
 <style>
 
-
+/* Elementos de la vista y estilos definidos para estos, posición, tamanio, etc. */
 .texto{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: justify;

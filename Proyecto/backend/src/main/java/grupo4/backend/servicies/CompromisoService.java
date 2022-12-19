@@ -11,16 +11,31 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 
+
 @Service
 public class CompromisoService {
     @Autowired
     CompromisoRepository compromisoRepository;
 
+    /*
+     * Metodo : verCompromiso()
+     * Descripcion : Retorna un compromiso
+     * Parametros : Integer (id_compromiso)
+     * Retorno : CompromisoEntity
+     */
     public CompromisoEntity verCompromiso(Integer id_compromiso){
         Optional<CompromisoEntity> compromisoaux = compromisoRepository.findById(id_compromiso);
         CompromisoEntity compromiso = compromisoaux.get();
         return compromiso;
     }
+
+
+    /*
+     * Metodo : editarCompromiso()
+     * Descripcion : Edita un compromiso
+     * Parametros : Integer (id_compromiso), CompromisoEntity
+     * Retorno : CompromisoEntity
+     */
     @PutMapping("{id_compromiso}")
     public CompromisoEntity editarCompromiso(Integer id_compromiso, CompromisoEntity compromiso2){
         Optional<CompromisoEntity> compromisoaux = compromisoRepository.findById(id_compromiso);
@@ -43,6 +58,12 @@ public class CompromisoService {
         return compromisoRepository.save(compromiso);
     }
 
+    /*
+     * Metodo : verCompromisoS()
+     * Descripcion : Retorna todos los compromisos de un academico
+     * Parametros : Integer (id_academico)
+     * Retorno : ArrayList<CompromisoEntity>
+     */
     public  ArrayList<CompromisoEntity> verCompromisoS(Integer id_academico) {
         Iterable<CompromisoEntity> allcompromisos = compromisoRepository.findAll();
         ArrayList<CompromisoEntity> outlist = new ArrayList<>();
@@ -54,6 +75,12 @@ public class CompromisoService {
         return  outlist;
     }
 
+    /* 
+     * Metodo : descargarArchivo()
+     * Descripcion : Retorna el archivo de un compromiso
+     * Parametros : Integer (id_compromiso)
+     * Retorno : byte[]
+     */
     public byte[] descargarArchivo(Integer id_compromiso){
         Optional<CompromisoEntity> compromiso = compromisoRepository.findById(id_compromiso);
         return compromiso.get().getArchivo();

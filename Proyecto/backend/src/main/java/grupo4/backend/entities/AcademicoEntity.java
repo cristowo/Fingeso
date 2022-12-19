@@ -12,9 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "academicos")
 @Data
+
+/*
+ * Clase : AcademicoEntity
+ * Descripcion : Clase que representa a un academico el cual es un tipo de usuario 
+ */
+
 public class AcademicoEntity extends UsuarioEntity{
+    //Atributos de la clase
+    //Nombre de departamento al que pertenece
     private String departamento;
+    //Nivel de jerarquia del academico
     private String jerarquia;
+    //Facultad a la que pertenece
     private String facultad;
     //comision asiganada a evaluar
     private Integer comision_evaluadora;

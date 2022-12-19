@@ -22,14 +22,35 @@ public class AcademicoService {
     @Autowired
     CompromisoRepository compromisoRepository;
 
+
+    /*
+     * Metodo : getall()
+     * Descripcion : Retorna todos los academicos registrados en la base de datos
+     * Parametros : Ninguno
+     * Retorno : ArrayList<AcademicoEntity>
+     */
     public ArrayList<AcademicoEntity> getall(){
         return academicoRepository.findAll();
     }
 
+
+
+    /*
+     * Metodod : crearCompromiso()
+     * Descripcion : Crea un nuevo compromiso en la base de datos
+     * Parametros : CompromisoEntity
+     * Retorno : CompromisoEntity
+     */
     public CompromisoEntity crearCompromiso(CompromisoEntity compromiso){
         return compromisoRepository.save(compromiso);
     }
 
+    /*
+     * Metodo: registrarEvidencia()
+     * Descripcion : Registra la evidencia de un compromiso
+     * Parametros : Integer (id), String
+     * Retorno : CompromisoEntity
+     */
     public CompromisoEntity registrarEvidencia(Integer id_compromiso, String evidencia){
         Optional<CompromisoEntity> compromisoaux = compromisoRepository.findById(id_compromiso);
         CompromisoEntity compromiso = compromisoaux.get();
@@ -37,6 +58,13 @@ public class AcademicoService {
         return compromisoRepository.save(compromiso);
     }
 
+
+    /*
+     * Metodo: login()
+     * Descripcion : Retorna el usuario que se loguea
+     * Parametros : String (correo), String (pass)
+     * Retorno : UsuarioEntity
+     */
     public UsuarioEntity login(String correo, String pass) {
         Iterable<AcademicoEntity> all = academicoRepository.findAll();
         for (AcademicoEntity r : all) {
@@ -48,6 +76,13 @@ public class AcademicoService {
         return null;
     }
 
+
+    /*
+     * Metodo: store()
+     * Descripcion : Almacena el archivo en la base de datos
+     * Parametros : MultipartFile, Integer (id_compromiso)
+     * Retorno : CompromisoEntity
+     */
     public CompromisoEntity store(MultipartFile file, Integer id_compromiso) throws IOException {
         Optional<CompromisoEntity> antiguo = compromisoRepository.findById(id_compromiso);
         antiguo.get().setArchivo(file.getBytes());
@@ -56,6 +91,12 @@ public class AcademicoService {
         return compromisoRepository.save(antiguo.get());
     }
 
+    /*
+     * Metodo: delete()
+     * Descripcion : Elimina el archivo de la base de datos
+     * Parametros : Integer (id_compromiso)
+     * Retorno : CompromisoEntity
+     */
     public CompromisoEntity delete(Integer id_compromiso){
         Optional<CompromisoEntity> antiguo = compromisoRepository.findById(id_compromiso);
         antiguo.get().setArchivo(null);

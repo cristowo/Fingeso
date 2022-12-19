@@ -17,11 +17,23 @@ public class ComisionEvaluacionController {
     @Autowired
     ComisionEvaluacionService comisionEvaluacionService;
 
+    /*
+     * Metodo : getCompromisosAcademicos()
+     * Descripcion : Retorna todos los compromisos de un academico
+     * Parametros : Integer (id_academico)
+     * Retorno : ArrayList<AcademicoEntity>
+     */
     @GetMapping("/comisionE/revisionAcademico/{idacademico}")
     public ArrayList<AcademicoEntity> getCompromisosAcademicos(@PathVariable Integer idacademico){
         return comisionEvaluacionService.academicosAevaluar(idacademico);
     }
 
+    /*
+     * Metodo : getCompromisosAcademicos()
+     * Descripcion : Retorna todos los compromisos de un academico
+     * Parametros : Integer (id_academico)
+     * Retorno : ArrayList<AcademicoEntity>
+     */
     @PutMapping("/evaluar/{id_evaluador}/{id_compromiso}/{puntaje}")
     public CompromisoEntity asignarPuntaje(@PathVariable Integer id_evaluador, @PathVariable Integer id_compromiso, @PathVariable Integer puntaje){
         return comisionEvaluacionService.asignarPuntaje(id_evaluador, id_compromiso, puntaje);

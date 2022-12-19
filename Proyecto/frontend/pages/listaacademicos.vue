@@ -43,10 +43,12 @@ export default {
     name: 'ListaAcademicos',
     data: function(){
         return{
+            /*Variable Lacademicos es la que contiene la lista de los academicos*/
             Lacademicos: []
         }
     },
     methods:{
+        /*Con el ID del academico se obtiene los datos de tal academico*/ 
         getData: async function(){
             let response = await this.$axios.get("http://localhost:3001/comisionE/revisionAcademico/" + localStorage.getItem("IdAcademico")) //cambiar puerto cuando lo prueben
             this.Lacademicos = response.data;

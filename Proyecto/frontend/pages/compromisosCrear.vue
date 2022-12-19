@@ -100,12 +100,14 @@ import axios from 'axios';
         name: "obtener",
         data(){
             return{
+               /* Variables a utilizar inicializadas en vacio*/
                 checked: "",
                 titulo_comp: "",
                 descripcion: ""
             }
         },
         mounted(){
+            /*Validacion de que el usuario este logeado*/
             if(!localStorage.getItem("NombreAcademico")){
                this.$router.push("/login");    
             }
@@ -135,6 +137,7 @@ import axios from 'axios';
             return `${day.padStart(2, '0')}-${month.padStart(2, '0')}-${year}`
             },
             async obtener(){
+                /*Se crea un objeto json con los datos del formulario y se manda al backend para crear el compromiso en la BD*/
                 let json={
                     "id_academico": localStorage.getItem("IdAcademico"),
                     "nombre": this.titulo_comp,
@@ -143,12 +146,12 @@ import axios from 'axios';
                     "fecha_inicioSTR": localStorage.getItem('fechaInicio'),
                     "fecha_terminoSTR": localStorage.getItem('fechaFin')
                 };
-                await axios.post("http://localhost:3001/compromiso/crear", json) //cambiar puerto cuando lo prueben
+                await axios.post("http://localhost:3001/compromiso/crear", json) 
                 .then(response =>{
                     console.log(response);
-                    //console.log(localStorage.getItem('fechaInicio'));
                     
                 })
+                /*Se eliminan las variables de localStorage para que no se repitan*/
                 localStorage.removeItem('fechaInicio');
                 localStorage.removeItem('fechaFin');
                 this.$router.push('compromisos');

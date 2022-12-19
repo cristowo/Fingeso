@@ -39,12 +39,14 @@ export default {
     name: 'Compromisos',
     data: function(){
         return{
+            /*L  compromisos es la que contiene la lista de los compromisos*/
             Lcompromisos: []
         }
     },
     methods:{
+        /* Con el ID del academico se obtiene los compromisos de tal academico*/
         getData: async function(){
-            let response = await this.$axios.get("http://localhost:3001/compromiso/viewAll/" + localStorage.getItem("IdAcademico")) //cambiar puerto cuando lo prueben
+            let response = await this.$axios.get("http://localhost:3001/compromiso/viewAll/" + localStorage.getItem("IdAcademico")) 
             this.Lcompromisos = response.data;
         }
     },

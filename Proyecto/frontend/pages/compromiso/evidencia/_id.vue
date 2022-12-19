@@ -99,6 +99,7 @@ export default {
     name: 'Evidencia',
     data: function(){
         return{
+            /* Inicializan los datos que se van a utilizar */
             Lcompromisos: [],
             dialog : false,
             slider: 0,
@@ -107,10 +108,12 @@ export default {
         }
     },
     methods:{
+        /* Funcion que se ejecuta al cargar la pagina */
         getData: async function(){
             let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
             this.Lcompromisos.push(response.data);
         },
+        /* Verifica si el compromiso es del usuario que esta logueado */
         isOwner: function(id){
             if(localStorage.getItem("IdAcademico") == id){
                 return true;
@@ -119,6 +122,7 @@ export default {
                 return false;
             }
         },
+        /* Permite abrir una ventana para ingresar puntaje y lo envia al backend  para posteriormente ser guardado  en la base de datos */
         async Open(){
             this.dialog = false;
             let response = await this.$axios.put("http://localhost:3001/evaluar/"+ localStorage.getItem("IdAcademico") +"/" + this.$route.params.id + "/" + this.slider);
@@ -134,7 +138,7 @@ export default {
             await axios.post("http://localhost:3001/compromiso/evidencia/eliminar/" + this.$route.params.id);
             location.reload();
         },
-        //falta implementar
+        /* Funcion que permite descargar el archivo */
         async descargar(){
             //descargar archivo
             let response = await this.$axios.get("http://localhost:3001/compromiso/evidencia/download/" + this.$route.params.id);
@@ -155,6 +159,7 @@ export default {
             link.click();
 
         },
+        /* Funcion que verifica si el archivo existe */
         existeArchivo(){
             if(this.Lcompromisos[0].nombre_archivo == null){
                 return false;

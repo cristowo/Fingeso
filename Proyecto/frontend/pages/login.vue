@@ -31,13 +31,16 @@
 import axios from 'axios';
 import LogoUSACH from '../components/logoUSACH.vue';
   export default {
+    /*Se define el nombre de la vista */
     name: 'Iniciar',
         data: function(){
             return{
+                /*Se definen las variables que se utilizaran en la vista */
                 correo:"",
                 clave:""
             }
         },
+    /*Validaciones de los campos de texto, para que no esten vacios u otros casos */
     data: () => ({
         valid: true,
         clave: "",
@@ -59,6 +62,7 @@ import LogoUSACH from '../components/logoUSACH.vue';
         checkbox: false,
     }),
     methods: {
+        /*Metod que setea las variables y comprueba si los datos ingresados son válidos */
         async Iniciar(){
                 let json={
                     "correo": this.correo,
@@ -66,7 +70,7 @@ import LogoUSACH from '../components/logoUSACH.vue';
                 };
                 await axios.post("http://localhost:3001/academicos/login", json)
                 .then(data =>{
-                
+                /*Se comprueba si el correo y la contraseña ingresados son correctos */
                 if(data.status == 200){
                     localStorage.setItem("NombreAcademico", data.data.nombre);
                     localStorage.setItem("correo_usuario", this.correo);

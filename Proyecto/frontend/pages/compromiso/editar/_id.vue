@@ -78,28 +78,13 @@
 </template>
 
 <script>
+
 import axios from 'axios';
     export default{
-        data: vm => ({
-            rules: [
-                value => !!value || 'Rellena este campo.',
-                value => (value && value.length >= 3) || 'Minimo 5 caracteres',
-            ],
-            rules2: [
-                value => !!value || 'Rellena este campo.',
-                value => (value && value.length >= 50) || 'Minimo 50 caracteres',
-            ],
-            picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
 
-            date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-            date2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-            dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
-            dateFormatted2: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
-            menu: false,
-            menu2: false,
-        }),
         name: "obtener",
         data: function(){
+            /* Crea valores vacios, pero Lcompromisos es el mas importante por que se cargan  los datos que vienen de los compromisos de interacciones anteriores */
             return{
                 checked: "",
                 titulo_comp: "",
@@ -108,39 +93,21 @@ import axios from 'axios';
                 nombre: [],
             }
         },
+        /* Se restringe el acceso si no se está logueado */
         mounted(){
             if(!localStorage.getItem("NombreAcademico")){
                this.$router.push("/login");    
             }
         },
-        computed: {
-            computedDateFormatted () {
-            return this.formatDate(this.date)
-            },
-            
-        },
-
-        watch: {
-            date (val) {
-            this.dateFormatted = this.formatDate(this.date)
-            },
-        },
-
         methods: {
-            formatDate (date) {
-            if (!date) return null
-
-            const [year, month, day] = date.split('-')
-            return `${day}/${month}/${year}`
-            },
-
+            /* Se obtienen los datos de la base de datos */
             async getNombre(){
                 let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
                 this.nombre = response.data;
             },
 
             
-
+            /* Se obtienen los datos de la base de datos, y se almacenan en las variables inicializadas anteriormente, como Lcompromisos */
             getData: async function(){
                 let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
                 this.Lcompromisos = response.data;
@@ -168,22 +135,18 @@ import axios from 'axios';
                     "fecha_terminoSTR": localStorage.getItem("fechaFin")
                 };
                 console.log(json);
-                await axios.put("http://localhost:3001/compromiso/editar/" + this.$route.params.id, json) //cambiar puerto cuando lo prueben
+                /*Se mandan los datos obtenidos a backend para luego almacenarlos en la base de datos */
+                await axios.put("http://localhost:3001/compromiso/editar/" + this.$route.params.id, json) 
                 localStorage.removeItem('fechaInicio');
                 localStorage.removeItem('fechaFin');
                 this.$router.push('/compromisos');
             },
             
-            parseDate (date) {
-                if (!date) return null
-
-                const [day, month, year] = date.split('/')
-                return `${day.padStart(2, '0')}-${month.padStart(2, '0')}-${year}`
-            },
             async obtener(){
                 this.getData();
             }
         },
+
         created:function(){
                 this.getNombre();
         },

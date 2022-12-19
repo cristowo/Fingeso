@@ -8,8 +8,15 @@ import lombok.Data;
 @DiscriminatorColumn(name = "userType")
 @Table(name = "usuarios")
 @Data
+
+/*
+ * Clase Abstracta : UsuarioEntity
+ * Descripcion : Clase que representa a un usuario
+ */
 public abstract class UsuarioEntity {
     @Id
+
+    //atributos de la clase
     protected Integer id_user;
     protected String nombre;
     protected String correo;

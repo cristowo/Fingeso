@@ -24,6 +24,12 @@ public class ComisionEvaluacionService {
     @Autowired
     AcademicoRepository academicoRepository;
 
+    /*
+     * metodo: asignarPuntaje()
+     * descripcion: asigna un puntaje a un compromiso
+     * parametros: Integer (id_evaluador), Integer (id_compromiso), Integer (puntaje)
+     * retorno: CompromisoEntity
+     */
     public CompromisoEntity asignarPuntaje(Integer id_evaluador, Integer id_compromiso, Integer puntaje) {
         // encontrar compromiso
         Optional<CompromisoEntity> aux = compromisoRepository.findById(id_compromiso);
@@ -46,6 +52,13 @@ public class ComisionEvaluacionService {
         return compromisoRepository.save(compromiso);
     }
 
+
+    /*
+     * Metodo : acdemicoAevaluar()
+     * Descripcion: devuelve los academicos que tiene que evaluar un academico
+     * Parametros: Integer (id_academico)
+     * Retorno: ArrayList<AcademicoEntity>
+     */
     public ArrayList<AcademicoEntity> academicosAevaluar(Integer idacademico){
         ArrayList<ComisionEvaluacionEntity> comisiones = comisionEvaluacionRepository.findAll();
         ArrayList<AcademicoEntity> academicos = new ArrayList<>();
