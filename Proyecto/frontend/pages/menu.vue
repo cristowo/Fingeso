@@ -37,7 +37,6 @@
                 </v-row>
                 
                 <!--Carrusel con imagenes para adornar el menu-->
-                <!--a-->
                 <v-row>
                     <v-col>
                         <v-card shaped elevation="6" height="480" style="margin-top:2%">
