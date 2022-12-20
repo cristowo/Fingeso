@@ -7,7 +7,7 @@
                 
                 <v-row no-gutters>
                 
-                <v-col class="compromiso" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%;">
+                <v-col class="compromiso" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 2%;">
                     <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
                         <v-card-title>Compromisos</v-card-title>
                         <v-card-subtitle>Agrega o edita tus compromisos</v-card-subtitle>
@@ -34,6 +34,23 @@
                 </v-col>
 
                 </v-row>
+                
+                <!--Carrusel con imagenes para adornar el menu-->
+                <v-row>
+                    <v-col>
+                        <v-card shaped elevation="6" style="margin-top:2%">
+                            <v-carousel cycle hide-delimiters height="480"  :show-arrows="false">
+                                <v-carousel-item>
+                                    <v-img src="/usach_01.jpg" style="max-width: 100%;"></v-img>
+                                </v-carousel-item>
+                                <v-carousel-item>
+                                    <v-img src="/usach_02.jpg" style="max-width: 100%;"></v-img>
+                                </v-carousel-item>
+                            </v-carousel>
+                        </v-card>
+                    </v-col>
+                </v-row>
+
             </v-container>
             <Footer></Footer>
         </div>        

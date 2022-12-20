@@ -34,7 +34,7 @@
                                 </v-card-action>
                             </v-card>
                         </v-col>
-                    </v-row>  
+                    </v-row>
                 </v-container>
             </div>
             <Footer></Footer>
