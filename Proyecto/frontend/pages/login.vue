@@ -75,6 +75,7 @@ import LogoUSACH from '../components/logoUSACH.vue';
                     localStorage.setItem("NombreAcademico", data.data.nombre);
                     localStorage.setItem("correo_usuario", this.correo);
                     localStorage.setItem("IdAcademico", data.data.id_user);
+                    localStorage.setItem("PC", data.data.pcomision);
                     if(data.data.nombre === undefined){
                         window.alert("correo o contraseña no coinceden con las credenciales registradas en el sistema")
                     }else{

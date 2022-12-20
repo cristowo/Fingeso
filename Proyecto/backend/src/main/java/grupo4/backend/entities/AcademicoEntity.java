@@ -26,8 +26,10 @@ public class AcademicoEntity extends UsuarioEntity{
     private String jerarquia;
     //Facultad a la que pertenece
     private String facultad;
-    //comision asiganada a evaluar
+    //comision asiganada a evaluarlo
     private Integer comision_evaluadora;
+    //pertenece a comision
+    private Boolean Pcomision;
 
 
 

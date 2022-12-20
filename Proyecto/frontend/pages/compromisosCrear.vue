@@ -138,6 +138,11 @@ import axios from 'axios';
             },
             async obtener(){
                 /*Se crea un objeto json con los datos del formulario y se manda al backend para crear el compromiso en la BD*/
+                //caso donde faltan datos
+                if(this.titulo_comp=="" || this.descripcion=="" || this.checked==""){
+                    alert("Faltan datos por llenar");
+                    return;
+                }
                 let json={
                     "id_academico": localStorage.getItem("IdAcademico"),
                     "nombre": this.titulo_comp,

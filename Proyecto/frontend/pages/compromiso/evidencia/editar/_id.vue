@@ -18,7 +18,7 @@
                         </form>
 
                         </template>
-                        <v-btn @click = "subirNuevoArchivo" dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
+                        <v-btn @click = "subirArchivo" dark color="#EA7600" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                             <v-icon dark>
                                 mdi-check
                             </v-icon>
@@ -36,6 +36,7 @@
 
 <script>
 import axios from 'axios';
+import { async } from 'q';
     export default{
         data: vm => ({
             rules: [
@@ -124,16 +125,22 @@ import axios from 'axios';
                 this.getData();
             },
             // entregar archivo "file" para subida a base de datas
-            async subirNuevoArchivo(){
-                let formData = new FormData();
-                formData.append('file', this.file);
-                await axios.post("http://localhost:3001/compromiso/evidencia/subir/" + this.$route.params.id, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                });
-                this.$router.push('/compromiso/evidencia/' + this.$route.params.id);
-            }
+            async subirArchivo(){
+                // si no se sube nada se manda un mensaje de error
+                if(this.file == null){
+                    alert("No se ha seleccionado ningun archivo");
+                }
+                else{
+                    let formData = new FormData();
+                    formData.append('file', this.file);
+                    await axios.post("http://localhost:3001/compromiso/evidencia/subir/" + this.$route.params.id, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                    this.$router.push('/compromiso/evidencia/' + this.$route.params.id);
+                }
+            } 
         }
 
     }   

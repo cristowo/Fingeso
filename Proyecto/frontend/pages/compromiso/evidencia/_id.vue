@@ -124,6 +124,12 @@ export default {
         },
         /* Permite abrir una ventana para ingresar puntaje y lo envia al backend  para posteriormente ser guardado  en la base de datos */
         async Open(){
+            //caso slider < 0 o slider > 100
+            if(this.slider < 0 || this.slider > 100){
+                alert("Ingrese un valor entre 0 y 100");
+                return;
+            }
+
             this.dialog = false;
             let response = await this.$axios.put("http://localhost:3001/evaluar/"+ localStorage.getItem("IdAcademico") +"/" + this.$route.params.id + "/" + this.slider);
             // ahora recargamos la pagina automaticamente para que se vea el cambio
@@ -144,20 +150,12 @@ export default {
             let response = await this.$axios.get("http://localhost:3001/compromiso/evidencia/download/" + this.$route.params.id);
             // transformar el archivo a un blob
             console.log(response.data);
-
-            const byteCharacters = atob(response.data);
-            const byteNumbers = new Array(byteCharacters.length);
-            for (let i = 0; i < byteCharacters.length; i++) {
-                byteNumbers[i] = byteCharacters.charCodeAt(i);
-            }
-            const byteArray = new Uint8Array(byteNumbers);
-            const blob = new Blob([byteArray], {type: this.Lcompromisos[0].tipo_archivo});
+            var blob = new Blob([response.data], {type: this.Lcompromisos[0].tipo_archivo});
             // crear un link para descargar el archivo
-            const link = document.createElement('a');
+            var link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
             link.download = this.Lcompromisos[0].nombre_archivo;
             link.click();
-
         },
         /* Funcion que verifica si el archivo existe */
         existeArchivo(){

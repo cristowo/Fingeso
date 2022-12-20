@@ -1,9 +1,8 @@
 package grupo4.backend.servicies;
 
-import grupo4.backend.entities.AcademicoEntity;
-import grupo4.backend.entities.CompromisoEntity;
-import grupo4.backend.entities.UsuarioEntity;
+import grupo4.backend.entities.*;
 import grupo4.backend.repositories.AcademicoRepository;
+import grupo4.backend.repositories.ComisionEvaluacionRepository;
 import grupo4.backend.repositories.CompromisoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -21,6 +21,9 @@ public class AcademicoService {
     AcademicoRepository academicoRepository;
     @Autowired
     CompromisoRepository compromisoRepository;
+
+    @Autowired
+    ComisionEvaluacionRepository comisionEvaluacionRepository;
 
 
     /*

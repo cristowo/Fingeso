@@ -16,12 +16,12 @@
                         <v-btn href="/compromisosCrear" class="botonCrear primary" elevation="46">
                             Crear
                         </v-btn>
-                        <v-btn href="/compromisos" class="botonVer secondary" elevation="6">
+                        <v-btn v-if="hayCompromisos" href="/compromisos" class="botonVer secondary" elevation="6">
                             Ver
                         </v-btn>
                     </v-card>
                 </v-col>
-                <v-col class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%; padding-bottom:">
+                <v-col v-if="perteneceAcomision" class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%; padding-bottom:">
                     <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
                         <v-card-title>Evaluaciones</v-card-title>
                         <v-card-subtitle>Realiza las evaluaciones</v-card-subtitle>
@@ -41,15 +41,20 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { async } from 'q';
     export default{
         name:"Menu",
         /*data() define un string vacio que se utilizará en los otros metodos */
         data(){
             return{
-                nombre_academico: ""
+                nombre_academico: "",
+                perteneceAcomision: false,
+                Lcompromisos: [],
+                hayCompromisos: false,
             }
         },
-        
+
         /*mounted() se ejecuta cuando se carga la vista, se utiliza para verificar si el usuario esta logeado */
         mounted(){
             if(!localStorage.getItem("NombreAcademico")){
@@ -59,6 +64,16 @@
         /*Se obtiene el nombre del academico logeado y se guarda en la variable nombre_academico */
         else{
             this.nombre_academico = localStorage.getItem("NombreAcademico");
+            if(localStorage.getItem("PC") == "true"){
+                this.perteneceAcomision = true;
+            }
+            let response = axios.get('http://localhost:3001/compromiso/viewAll/'+ localStorage.getItem("IdAcademico"));
+            response.then((response) => {
+                this.Lcompromisos = response.data;
+                if(this.Lcompromisos.length > 0){
+                    this.hayCompromisos = true;
+                }
+            });
         }
     }
 }
