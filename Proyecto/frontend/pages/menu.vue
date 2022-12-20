@@ -23,7 +23,7 @@
                     </v-col>
 
                 <!--Seccion que ven los integrantes de una comision para las evaluaciones-->
-                    <v-col v-if="perteneceAcomision" class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%; padding-bottom:">
+                    <v-col v-if="perteneceAcomision" class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 2%; padding-bottom:">
                         <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
                             <v-card-title>Evaluaciones</v-card-title>
                             <v-card-subtitle>Realiza las evaluaciones</v-card-subtitle>
