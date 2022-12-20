@@ -1,56 +1,61 @@
+<!--Vista del menu principal-->
 <template>
     <v-app>
         <div>
             <appBar></appBar>
-            
             <v-container class="cards">
-                
                 <v-row no-gutters>
-                
-                <v-col class="compromiso" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 2%;">
-                    <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
-                        <v-card-title>Compromisos</v-card-title>
-                        <v-card-subtitle>Agrega o edita tus compromisos</v-card-subtitle>
-                        <v-card-text>Añade tus compromisos para más adelante aportar evidencia que respalde sus respectivas realizaciones.</v-card-text>
-                        <v-divider></v-divider>
-                        <v-btn href="/compromisosCrear" class="botonCrear primary" elevation="46">
-                            Crear
-                        </v-btn>
-                        <v-btn v-if="hayCompromisos" href="/compromisos" class="botonVer secondary" elevation="6">
-                            Ver
-                        </v-btn>
-                    </v-card>
-                </v-col>
-                <v-col v-if="perteneceAcomision" class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%; padding-bottom:">
-                    <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
-                        <v-card-title>Evaluaciones</v-card-title>
-                        <v-card-subtitle>Realiza las evaluaciones</v-card-subtitle>
-                        <v-card-text>Revisa los compromisos de tus academicos asignados y analiza sus evidencias adjuntadas.</v-card-text>
-                        <v-divider></v-divider>
-                        <v-btn href="/listaacademicos" class="botonBuscar primary" elevation="6">
-                            Buscar
-                        </v-btn>
-                    </v-card>
-                </v-col>
 
+                <!--Seccion que ven los usuarios para crear los compromisos-->
+                    <v-col class="compromiso" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 2%;">
+                        <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
+                            <v-card-title>Compromisos</v-card-title>
+                            <v-card-subtitle>Agrega o edita tus compromisos</v-card-subtitle>
+                            <v-card-text>Añade tus compromisos para más adelante aportar evidencia que respalde sus respectivas realizaciones.</v-card-text>
+                            <v-divider></v-divider>
+                            <v-btn href="/compromisosCrear" class="botonCrear primary" elevation="46">
+                                Crear
+                            </v-btn>
+                            <v-btn v-if="hayCompromisos" href="/compromisos" class="botonVer secondary" elevation="6">
+                                Ver
+                            </v-btn>
+                        </v-card>
+                    </v-col>
+
+                <!--Seccion que ven los integrantes de una comision para las evaluaciones-->
+                    <v-col v-if="perteneceAcomision" class="evaluacion" style="padding-left: 2.5%; padding-right: 2.5%; padding-top: 20%; padding-bottom:">
+                        <v-card class="texto pa-2" elevation="8" width="auto" height="auto" shaped outlined>
+                            <v-card-title>Evaluaciones</v-card-title>
+                            <v-card-subtitle>Realiza las evaluaciones</v-card-subtitle>
+                            <v-card-text>Revisa los compromisos de tus academicos asignados y analiza sus evidencias adjuntadas.</v-card-text>
+                            <v-divider></v-divider>
+                            <v-btn href="/listaacademicos" class="botonBuscar primary" elevation="6">
+                                Buscar
+                            </v-btn>
+                        </v-card>
+                    </v-col>
                 </v-row>
                 
                 <!--Carrusel con imagenes para adornar el menu-->
+                <!--a-->
                 <v-row>
                     <v-col>
-                        <v-card shaped elevation="6" style="margin-top:2%">
-                            <v-carousel cycle hide-delimiters height="480"  :show-arrows="false">
+                        <v-card shaped elevation="6" height="480" style="margin-top:2%">
+                            <v-carousel cycle interval="3800" hide-delimiters height="480" :show-arrows="false">
                                 <v-carousel-item>
-                                    <v-img src="/usach_01.jpg" style="max-width: 100%;"></v-img>
+                                    <v-img src="/usach_01.jpg"></v-img>
                                 </v-carousel-item>
                                 <v-carousel-item>
-                                    <v-img src="/usach_02.jpg" style="max-width: 100%;"></v-img>
+                                    <v-img src="/usach_02.jpg"></v-img>
                                 </v-carousel-item>
+                                <v-carousel-item>
+                                    <v-img src="/usach_03.jpg"></v-img>
+                                </v-carousel-item>
+                                
                             </v-carousel>
                         </v-card>
                     </v-col>
                 </v-row>
-
             </v-container>
             <Footer></Footer>
         </div>        
