@@ -111,7 +111,6 @@ import axios from 'axios';
             getData: async function(){
                 let response = await this.$axios.get("http://localhost:3001/compromiso/view/" + this.$route.params.id) //cambiar puerto cuando lo prueben
                 this.Lcompromisos = response.data;
-                console.log(this.fecha_inicioSTR);
                 if(this.titulo_comp == undefined || this.titulo_comp == ""){
                     this.titulo_comp = this.Lcompromisos.nombre;
                 }
@@ -121,16 +120,16 @@ import axios from 'axios';
                 if(this.checked == undefined || this.checked == ""){
                     this.checked = this.Lcompromisos.tipo_compromiso;
                 }
+                this.fecha_inicioSTR = localStorage.getItem("fechaInicio");
                 if(this.fecha_inicioSTR == undefined || this.fecha_inicioSTR == ""){
                     this.fecha_inicioSTR = this.Lcompromisos.fecha_inicioSTR;
                 }
+                this.fecha_finSTR = localStorage.getItem("fechaFin");
                 if(this.fecha_finSTR == undefined || this.fecha_finSTR == ""){
-                    this.fecha_finSTR = this.Lcompromisos.fecha_finSTR;
+                    this.fecha_finSTR = this.Lcompromisos.fecha_terminoSTR;
                 }
-                                //fechasInicio debe ser menor a fechaFin
-                //convertir fechas a 2 primeros numeros a int
-                let fechaInicio=localStorage.getItem('fechaInicio');
-                let fechaFin=localStorage.getItem('fechaFin');
+                let fechaInicio=this.fecha_inicioSTR;
+                let fechaFin=this.fecha_finSTR;
                 let diaInicio=parseInt(fechaInicio.substring(0,2));
                 let diaFin=parseInt(fechaFin.substring(0,2));
                 let mesInicio=parseInt(fechaInicio.substring(3,5));
@@ -157,14 +156,16 @@ import axios from 'axios';
                     "nombre": this.titulo_comp,
                     "descripcion": this.descripcion,
                     "tipo_compromiso": this.checked,
-                    "fecha_inicioSTR": localStorage.getItem("fechaInicio"),
-                    "fecha_terminoSTR": localStorage.getItem("fechaFin")
+                    "fecha_inicioSTR": this.fecha_inicioSTR,
+                    "fecha_terminoSTR": this.fecha_finSTR,
                 };
                 console.log(json);
                 /*Se mandan los datos obtenidos a backend para luego almacenarlos en la base de datos */
                 await axios.put("http://localhost:3001/compromiso/editar/" + this.$route.params.id, json) 
                 localStorage.removeItem('fechaInicio');
                 localStorage.removeItem('fechaFin');
+                //mensaje de exito
+                alert("Compromiso editado con exito");
                 this.$router.push('/compromisos');
             },
             
