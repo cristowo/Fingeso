@@ -127,6 +127,32 @@ import axios from 'axios';
                 if(this.fecha_finSTR == undefined || this.fecha_finSTR == ""){
                     this.fecha_finSTR = this.Lcompromisos.fecha_finSTR;
                 }
+                                //fechasInicio debe ser menor a fechaFin
+                //convertir fechas a 2 primeros numeros a int
+                let fechaInicio=localStorage.getItem('fechaInicio');
+                let fechaFin=localStorage.getItem('fechaFin');
+                let diaInicio=parseInt(fechaInicio.substring(0,2));
+                let diaFin=parseInt(fechaFin.substring(0,2));
+                let mesInicio=parseInt(fechaInicio.substring(3,5));
+                let mesFin=parseInt(fechaFin.substring(3,5));
+                let anioInicio=parseInt(fechaInicio.substring(6,10));
+                let anioFin=parseInt(fechaFin.substring(6,10));
+                if(anioInicio>anioFin){
+                    alert("La fecha de inicio debe ser menor a la fecha de termino");
+                    return;
+                }
+                if(anioInicio==anioFin){
+                    if(mesInicio>mesFin){
+                        alert("La fecha de inicio debe ser menor a la fecha de termino");
+                        return;
+                    }
+                    if(mesInicio==mesFin){
+                        if(diaInicio>diaFin){
+                            alert("La fecha de inicio debe ser menor a la fecha de termino");
+                            return;
+                        }
+                    }
+                }
                 let json={
                     "nombre": this.titulo_comp,
                     "descripcion": this.descripcion,

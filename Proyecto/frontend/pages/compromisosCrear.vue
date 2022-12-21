@@ -80,23 +80,6 @@
 <script>
 import axios from 'axios';
     export default{
-        data: vm => ({
-            rules: [
-                value => !!value || 'Rellena este campo.',
-                value => (value && value.length >= 3) || 'Minimo 5 caracteres',
-            ],
-            rules2: [
-                value => !!value || 'Rellena este campo.',
-                value => (value && value.length >= 50) || 'Minimo 50 caracteres',
-            ],
-            picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-            date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-            date2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-            dateFormatted: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
-            dateFormatted2: vm.formatDate((new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)),
-            menu: false,
-            menu2: false,
-        }),
         name: "obtener",
         data(){
             return{
@@ -112,36 +95,44 @@ import axios from 'axios';
                this.$router.push("/login");    
             }
         },
-        computed: {
-            computedDateFormatted () {
-            return this.formatDate(this.date)
-            },
-            
-        },
-        watch: {
-            date (val) {
-            this.dateFormatted = this.formatDate(this.date)
-            },
-        },
         methods: {
-            formatDate (date) {
-            if (!date) return null
-            const [year, month, day] = date.split('-')
-            return `${day}/${month}/${year}`
-            },
-            
-            
-            parseDate (date) {
-            if (!date) return null
-            const [day, month, year] = date.split('/')
-            return `${day.padStart(2, '0')}-${month.padStart(2, '0')}-${year}`
-            },
             async obtener(){
                 /*Se crea un objeto json con los datos del formulario y se manda al backend para crear el compromiso en la BD*/
                 //caso donde faltan datos
                 if(this.titulo_comp=="" || this.descripcion=="" || this.checked==""){
                     alert("Faltan datos por llenar");
                     return;
+                }
+                // para fechas vacias
+                if(localStorage.getItem('fechaInicio')==null || localStorage.getItem('fechaFin')==null){
+                    alert("Faltan fecahas por llenar");
+                    return;
+                }
+                //fechasInicio debe ser menor a fechaFin
+                //convertir fechas a 2 primeros numeros a int
+                let fechaInicio=localStorage.getItem('fechaInicio');
+                let fechaFin=localStorage.getItem('fechaFin');
+                let diaInicio=parseInt(fechaInicio.substring(0,2));
+                let diaFin=parseInt(fechaFin.substring(0,2));
+                let mesInicio=parseInt(fechaInicio.substring(3,5));
+                let mesFin=parseInt(fechaFin.substring(3,5));
+                let anioInicio=parseInt(fechaInicio.substring(6,10));
+                let anioFin=parseInt(fechaFin.substring(6,10));
+                if(anioInicio>anioFin){
+                    alert("La fecha de inicio debe ser menor a la fecha de termino");
+                    return;
+                }
+                if(anioInicio==anioFin){
+                    if(mesInicio>mesFin){
+                        alert("La fecha de inicio debe ser menor a la fecha de termino");
+                        return;
+                    }
+                    if(mesInicio==mesFin){
+                        if(diaInicio>diaFin){
+                            alert("La fecha de inicio debe ser menor a la fecha de termino");
+                            return;
+                        }
+                    }
                 }
                 let json={
                     "id_academico": localStorage.getItem("IdAcademico"),
