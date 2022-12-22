@@ -95,8 +95,10 @@ import axios from 'axios';
         },
         /* Se restringe el acceso si no se está logueado */
         mounted(){
-            if(!localStorage.getItem("NombreAcademico")){
-               this.$router.push("/login");    
+            if(typeof window !== 'undefined'){
+                if(!localStorage.getItem("NombreAcademico")){
+                this.$router.push("/login");    
+                }
             }
         },
         methods: {
@@ -159,7 +161,6 @@ import axios from 'axios';
                     "fecha_inicioSTR": this.fecha_inicioSTR,
                     "fecha_terminoSTR": this.fecha_finSTR,
                 };
-                console.log(json);
                 /*Se mandan los datos obtenidos a backend para luego almacenarlos en la base de datos */
                 await axios.put("http://localhost:3001/compromiso/editar/" + this.$route.params.id, json) 
                 localStorage.removeItem('fechaInicio');

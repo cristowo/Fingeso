@@ -78,25 +78,27 @@ import { async } from 'q';
 
         /*mounted() se ejecuta cuando se carga la vista, se utiliza para verificar si el usuario esta logeado */
         mounted(){
-            if(!localStorage.getItem("NombreAcademico")){
-               this.$router.push("/login");    
-        }
+            if(typeof window !== 'undefined'){
+                if(!localStorage.getItem("NombreAcademico")){
+                this.$router.push("/login");    
+                }   
 
-        /*Se obtiene el nombre del academico logeado y se guarda en la variable nombre_academico */
-        else{
-            this.nombre_academico = localStorage.getItem("NombreAcademico");
-            if(localStorage.getItem("PC") == "true"){
-                this.perteneceAcomision = true;
-            }
-            let response = axios.get('http://localhost:3001/compromiso/viewAll/'+ localStorage.getItem("IdAcademico"));
-            response.then((response) => {
-                this.Lcompromisos = response.data;
-                if(this.Lcompromisos.length > 0){
-                    this.hayCompromisos = true;
+            /*Se obtiene el nombre del academico logeado y se guarda en la variable nombre_academico */
+                else{
+                    this.nombre_academico = localStorage.getItem("NombreAcademico");
+                    if(localStorage.getItem("PC") == "true"){
+                        this.perteneceAcomision = true;
+                    }
+                    let response = axios.get('http://localhost:3001/compromiso/viewAll/'+ localStorage.getItem("IdAcademico"));
+                    response.then((response) => {
+                        this.Lcompromisos = response.data;
+                        if(this.Lcompromisos.length > 0){
+                            this.hayCompromisos = true;
+                        }
+                    });
                 }
-            });
+            }
         }
-    }
 }
 </script>
 

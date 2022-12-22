@@ -49,8 +49,10 @@ import { async } from 'q';
             }
         },
         mounted(){
-            if(!localStorage.getItem("NombreAcademico")){
-               this.$router.push("/login");    
+            if(typeof window !== 'undefined'){
+                if(!localStorage.getItem("NombreAcademico")){
+                this.$router.push("/login");    
+                }
             }
         },
         methods: {

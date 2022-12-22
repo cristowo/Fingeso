@@ -5,10 +5,9 @@
             <a href="/menu">
                 <logoUSACH class="logo"></logoUSACH>
             </a>
-            
             <v-spacer></v-spacer>
-
-            <v-menu v-model="menu" :close-on-content-click="false" :nudge-right="40" offset-y min-width="290px">
+            Bienvenido/a {{nombre_academico}}
+            <v-menu :close-on-content-click="false" :nudge-right="40" offset-y min-width="290px">
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn class="ma-2" icon color="primary" v-bind="attrs" v-on="on">
                         <v-icon>mdi-account</v-icon>
@@ -51,9 +50,11 @@
             }
         },
         mounted(){
-            if(localStorage.getItem("NombreAcademico")){
-               this.nombre_academico = localStorage.getItem("NombreAcademico");   
-               this.correo_usuario = localStorage.getItem("correo_usuario")
+            if(typeof window !== 'undefined'){
+                if(localStorage.getItem("NombreAcademico")){
+                    this.nombre_academico = localStorage.getItem("NombreAcademico");   
+                    this.correo_usuario = localStorage.getItem("correo_usuario")
+                }
             }
         },
 

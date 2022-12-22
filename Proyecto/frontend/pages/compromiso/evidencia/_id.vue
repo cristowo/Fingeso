@@ -34,15 +34,15 @@
                                 </div>
                                 </v-card-text>
                                 <v-divider style="margin-bottom: 0.5%;"></v-divider>
-                                <v-card-action v-if = "isOwner(L.id_academico)">
+                                <v-card-actions v-if = "isOwner(L.id_academico)">
                                     <v-btn @click = "editarevidencia" dark class="primary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                         <v-icon dark>
                                             mdi-pencil
                                         </v-icon>
                                         Subir/Editar archivo
                                     </v-btn>
-                                </v-card-action>
-                                <v-card-action v-else>
+                                </v-card-actions>
+                                <v-card-actions v-else>
                                     <v-btn @click.stop="dialog = true" dark class="primary" style="margin-bottom: 0.5%; margin-left: 0.5%;">
                                         <v-icon dark>
                                             mdi-check-all
@@ -81,7 +81,7 @@
                                             </v-card-actions>
                                             </v-card>
                                     </v-dialog>
-                                </v-card-action>
+                                </v-card-actions>
                             </v-card>
                         </v-col>
                     </v-row>
